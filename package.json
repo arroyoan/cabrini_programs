@@ -1,11 +1,11 @@
 {
   "name": "cabrini_map_list",
-  "type":"module",
+  "type": "module",
   "version": "1.0.0",
   "description": "Application that displays programs affiliated with Cabrini.",
   "main": "server.js",
   "scripts": {
-    "server":"nodemon backend/server.js",
+    "server": "nodemon backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Aaron Arroyo",
@@ -13,6 +13,7 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "mongoose": "^5.12.14",
     "node-geocoder": "^3.27.0"
   },
