@@ -112,7 +112,11 @@ const updateLocation = asyncHandler(async (req,res)=>{
 // @route   PUT /api/v1/locations/:id/newAddress
 // @access  Private/Admin
 const updateStreetAdress = asyncHandler(async (req,res)=>{
-
+  try {
+    
+  } catch (error) {
+    
+  }
 })
 
 // @desc    Add program to a location
@@ -145,7 +149,26 @@ const addProgram = asyncHandler(async (req,res)=>{
 // @route   DELETE /api/location/:id/:programId
 // @access  Private
 const removeProgram = asyncHandler(async (req,res)=>{
+  try {
+    const program = await Program.findById(req.params.programId)
+    const location = await Location.findById(req.params.id)
 
+    if(program && location && location.programs.includes(program._id) ){
+      location.programs.pull(program._id)
+      const updatedLocation = await location.save()
+      res.status(200).json(
+        updatedLocation
+      )
+    }
+    else{
+      // check which one is not found and throw appropriate error
+      throw new Error('Could not find either Program or Location')
+    }
+  } catch (error) {
+    res.status(404).json(
+      {err:error.message}
+    )
+  }
 })
 
 // @desc    Delete Location and remove location from programs
