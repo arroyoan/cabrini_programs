@@ -8,19 +8,35 @@ import asyncHandler from 'express-async-handler'
 const getAllLocations = asyncHandler(async (req,res)=>{
   try {
     const numLocation =await Location.countDocuments()
-    const locations = await Location.find({})
+    const locations = await Location.find({}).populate({path:'programs', select: '_id programName'})
     res.status(200).json({
       numLocation,
       locations
     })
   } catch (error) {
-    res.send(error)
+    res.status(404).json({
+      err:error.message
+    })
   }
 })
 
 // @desc    Get Single location
-// @route   GET /api/v1/locations/:id
+// @route   GET /api/location/:id
 // @access  Public
+const getSingleLocation = asyncHandler(async (req,res)=>{
+  try {
+    const location = await Location.findById(req.params.id).populate({path:'programs', select:'_id programName'})
+    if(location){
+      res.status(200).json(location)
+    } else{
+      throw new Error(`Could not find location with id ${req.params.id}`)
+    }
+  } catch (error) {
+    res.status(404).json({
+      err: error.message
+    })
+  }
+})
 
 // @desc    Creates a new location
 // @route   POST /api/v1/locations/
@@ -92,6 +108,13 @@ const updateLocation = asyncHandler(async (req,res)=>{
   
 })
 
+// @desc    updates location addreess and GeoJSON information
+// @route   PUT /api/v1/locations/:id/newAddress
+// @access  Private/Admin
+const updateStreetAdress = asyncHandler(async (req,res)=>{
+
+})
+
 // @desc    Add program to a location
 // @route   PUT /api/location/:id/:programId
 // @access  Private
@@ -118,9 +141,29 @@ const addProgram = asyncHandler(async (req,res)=>{
   }
 })
 
+// @desc    Remove program from location
+// @route   DELETE /api/location/:id/:programId
+// @access  Private
+const removeProgram = asyncHandler(async (req,res)=>{
+
+})
+
+// @desc    Delete Location and remove location from programs
+// @route   DELETE /api/location/:id/:programId
+// @access  Private
+const deleteLocaiton = asyncHandler(async (req,res)=>{
+
+})
+
+
+
 export {
   getAllLocations,
+  getSingleLocation,
   createLocation,
   updateLocation,
-  addProgram
+  updateStreetAdress,
+  addProgram,
+  removeProgram,
+  deleteLocaiton
 }

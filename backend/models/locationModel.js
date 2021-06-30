@@ -14,7 +14,7 @@ const locationSchema = mongoose.Schema({
       'Please add a valid URL that starts with http or https'
     ]
   },
-  programs: [{type:mongoose.Schema.ObjectId, ref:'programSchema'}],
+  programs: [{type:mongoose.Schema.ObjectId, ref:'Program'}],
   GeoJson:{},
   locationAddress: {
     type: String

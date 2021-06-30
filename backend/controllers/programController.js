@@ -179,9 +179,7 @@ const deleteProgram = asyncHandler( async (req,res)=>{
       await program.remove({_id:req.params.id})
       await Location.updateMany({programs:req.params.id},{$pull: {programs:req.params.id}})
 
-      res.status(200).json({
-
-      })
+      res.status(200).json({})
     } else{
       throw new Error(`Could not find program with id ${req.params.id}`)
     }
