@@ -64,9 +64,7 @@ const programSchema = new mongoose.Schema({
   // tags:{
 
   // },
-  // categrories:{
-
-  // },
+  categrories:[{type:mongoose.Schema.ObjectId, ref:'Category'}],
   description: {
       blurb:{
         type: String,

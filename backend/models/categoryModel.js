@@ -1,14 +1,15 @@
 import mongoose from 'mongoose'
 
 const categorySchema = new mongoose.Schema({
-  categoryName:{
+  categoryType:{
     type: String,
-    required: [true,"Please add a Category Name"]
+    unique:[true,"This Category already exists!"],
+    required: [true,"Please Pick a Category"]
   }
 })
 
-const categoryModel = mongoose.model('Category',categorySchema);
+const Category = mongoose.model('Category',categorySchema);
 
 // functions
 
-export default categoryModel
+export default Category
