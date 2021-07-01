@@ -44,7 +44,7 @@ const getSingleProgram = asyncHandler(async (req,res)=>{
 
 // @desc    Creates a new program
 // @route   POST /api/v1/programs/
-// @access  Private/Admin
+// @access  Private
 const createProgram = asyncHandler(async (req,res)=>{
   try {
     // pulls all the user entries from the req
@@ -94,7 +94,7 @@ const createProgram = asyncHandler(async (req,res)=>{
 
 // @desc    Update Program Information
 // @route   PUT /api/v1/programs/:id
-// @access  Public
+// @access  Private
 const updateProgram = asyncHandler(async (req,res)=>{
   try {
     const program = await Program.findById(req.params.id)
@@ -124,7 +124,7 @@ const updateProgram = asyncHandler(async (req,res)=>{
 
 // @desc    Add a location
 // @route   PUT /api/v1/programs/:id/:locationId
-// @access  Public
+// @access  Private
 const addLocation = asyncHandler(async (req,res)=>{
   try {
     const program = await Program.findById(req.params.id)
@@ -148,7 +148,7 @@ const addLocation = asyncHandler(async (req,res)=>{
 
 // @desc    Remove a location
 // @route   DELETE /api/v1/programs/:id/:locationId
-// @access  Public
+// @access  Private
 const removeLocation = asyncHandler( async (req,res)=>{
   try {
     const program = await Program.findById(req.params.id)
@@ -169,9 +169,9 @@ const removeLocation = asyncHandler( async (req,res)=>{
   }
 })
 
-// @desc    Delte Program
+// @desc    Delete Program
 // @route   DELETE /api/v1/programs/:id
-// @access  Public
+// @access  Private
 const deleteProgram = asyncHandler( async (req,res)=>{
   try {
     const program = await Program.findById(req.params.id)

@@ -40,7 +40,7 @@ const getSingleLocation = asyncHandler(async (req,res)=>{
 
 // @desc    Creates a new location
 // @route   POST /api/v1/locations/
-// @access  Private/Admin
+// @access  Private
 const createLocation = asyncHandler(async (req,res)=>{
   try {
     const {
@@ -82,7 +82,7 @@ const createLocation = asyncHandler(async (req,res)=>{
 
 // @desc    updates location information
 // @route   PUT /api/v1/locations/:id
-// @access  Private/Admin
+// @access  Private
 const updateLocation = asyncHandler(async (req,res)=>{
   try {
     const location = await Location.findById(req.params.id)
@@ -108,9 +108,9 @@ const updateLocation = asyncHandler(async (req,res)=>{
   
 })
 
-// @desc    updates location addreess and GeoJSON information
+// @desc    updates location address and GeoJSON information
 // @route   PUT /api/v1/locations/:id/newAddress
-// @access  Private/Admin
+// @access  Private
 const updateStreetAdress = asyncHandler(async (req,res)=>{
   try {
     
@@ -162,7 +162,7 @@ const removeProgram = asyncHandler(async (req,res)=>{
     }
     else{
       // check which one is not found and throw appropriate error
-      throw new Error('Could not find either Program or Location')
+      throw new Error('Could not find either Program or Location or Program was not in the locations program array')
     }
   } catch (error) {
     res.status(404).json(
