@@ -5,14 +5,31 @@ import asyncHandler from 'express-async-handler'
 // @route   GET /api/v1/categories/
 // @access  Public
 const getAllCategories = asyncHandler(async (req,res)=>{
-
+  try {
+    const categories = await Category.find({})
+    res.status(200).json(categories)
+  } catch (error) {
+    res.status(500).json({
+      err:error.message
+    })
+  }
 })
 
 // @desc    Gets Single Category
 // @route   GET /api/v1/categories/:id
 // @access  Public
 const getSingleCategory = asyncHandler(async (req,res)=>{
-  
+  try {
+    const category = await Category.findById(req.params.id)
+    if(category){
+      res.status(200).json(category)
+    }
+    else{
+      throw new Error(`Could not find category with id ${req.params.id}`)
+    }
+  } catch (error) {
+    
+  }
 })
 
 // @desc    Create New Category
