@@ -175,7 +175,21 @@ const removeProgram = asyncHandler(async (req,res)=>{
 // @route   DELETE /api/location/:id/:programId
 // @access  Private
 const deleteLocaiton = asyncHandler(async (req,res)=>{
-
+  try {
+    const location = await Location.findById(req.params.id)
+    if(location){
+      await location.remove({_id: req.params.id})
+      await Program.updateMany({locations:req.params.id},{$pull:{locations:req.params.id}})
+      
+      res.status(200).json({})
+    } else{
+      throw new Error(`Could not find a location with the id ${req.params.id}`)
+    }
+  } catch (error) {
+    res.status(404).json({
+      err:error.message
+    })
+  }
 })
 
 
