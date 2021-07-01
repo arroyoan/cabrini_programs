@@ -19,7 +19,21 @@ const getSingleCategory = asyncHandler(async (req,res)=>{
 // @route   POST /api/v1/categories/
 // @access  Private
 const createCategory = asyncHandler(async (req,res)=>{
-  
+  try {
+    const {categoryName} = req.body
+    
+    const newCategory = new Category({
+      categoryName
+    })
+
+    await newCategory.save()
+    res.status(201).json(newCategory)
+
+  } catch (error) {
+    res.status(400).json({
+      err:error.message
+    })
+  }
 })
 
 // @desc    Update Category
