@@ -6,6 +6,8 @@ import {
   updateProgram,
   addLocation,
   removeLocation,
+  addCategory,
+  removeCategory,
   deleteProgram
 } from '../controllers/programController.js'
 
@@ -24,6 +26,10 @@ router.route('/:id')
 router.route('/:id/:locationId')
   .put(addLocation) 
   .delete(removeLocation)
+
+router.route('/:id/category/:categoryId')
+  .put(addCategory)
+  .delete(removeCategory)
 
 
 export default router

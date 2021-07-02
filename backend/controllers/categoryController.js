@@ -1,4 +1,5 @@
 import Category from '../models/categoryModel.js'
+import Program from '../models/programModel.js'
 import asyncHandler from 'express-async-handler'
 
 // @desc    Gets all categories
@@ -57,14 +58,42 @@ const createCategory = asyncHandler(async (req,res)=>{
 // @route   GET /api/v1/categories/:id
 // @access  Private
 const updateCategory = asyncHandler(async (req,res)=>{
-  
+  try {
+    const category = await Category.findById(req.params.id)
+    if(category){
+      category.categoryName= req.body.categoryName || category.categoryName
+      const updatedCat = await category.save()
+
+      res.status(200).json(
+        updatedCat
+      )
+    } else{
+      throw new Error(`Could not find category with id ${req.params.id}`)
+    }
+  } catch (error) {
+    res.status(200).json({
+      err:error.message
+    })
+  }
 })
 
 // @desc    Delete Category
 // @route   GET /api/v1/categories/:id
 // @access  Private
 const deleteCategory = asyncHandler(async (req,res)=>{
-  
+  try {
+    const category = await Category.findById(req.params.id)
+    if(category){
+      await category.remove({_id:req.params.id})
+      await Program.updateMany({categories: req.params.id}, {$pull: {categories: req.params.id}})
+
+      res.status(200).json({})
+    } else{
+      throw new Error(`Could not find category with id ${req.params.id}`)
+    }
+  } catch (error) {
+    
+  }
 })
 
 export {

@@ -1,5 +1,6 @@
 import Program from '../models/programModel.js'
 import Location from '../models/locationModel.js'
+import Category from '../models/categoryModel.js'
 import asyncHandler from 'express-async-handler'
 
 // @desc    Gets all programs
@@ -169,6 +170,50 @@ const removeLocation = asyncHandler( async (req,res)=>{
   }
 })
 
+// @desc    Add a category
+// @route   PUT /api/v1/programs/:id/category/:categoryId
+// @access  Private
+const addCategory = asyncHandler(async (req,res)=>{
+  try {
+    const program = await Program.findById(req.params.id)
+    const category = await Category.findById(req.params.categoryId)
+
+    if(program && category && !program.categories.includes(req.params.categoryId)){
+      program.categories.push(req.params.categoryId)
+      await program.save()
+      res.status(200).json(program)
+    } else{
+      throw new Error(`Could not find either program or category or category already in categories array`)
+    }
+  } catch (error) {
+    res.status(404).json({
+      err:error.message
+    })
+  }
+})
+
+// @desc    Remove a category
+// @route   DELETE /api/v1/programs/:id/category/:categoryId
+// @access  Private
+const removeCategory = asyncHandler(async (req,res)=>{
+  try {
+    const program = await Program.findById(req.params.id)
+    const category = await Category.findById(req.params.categoryId)
+
+    if(program && category && program.categories.includes(req.params.categoryId)){
+      program.categories.pull(req.params.categoryId)
+      await program.save()
+      res.status(200).json(program)
+    } else{
+      throw new Error(`Could not find either program or category or category already in categories array`)
+    }
+  } catch (error) {
+    res.status(404).json({
+      err:error.message
+    })
+  }
+})
+
 // @desc    Delete Program
 // @route   DELETE /api/v1/programs/:id
 // @access  Private
@@ -198,5 +243,7 @@ export {
   updateProgram,
   addLocation,
   removeLocation,
+  addCategory,
+  removeCategory,
   deleteProgram
 }
