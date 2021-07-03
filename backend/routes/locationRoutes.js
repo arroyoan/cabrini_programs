@@ -18,6 +18,9 @@ router.route('/')
   .get(getAllLocations)
   .post(createLocation)
 
+router.route('/newAddress/:id')
+  .put(updateStreetAdress)
+
 router.route('/:id')
   .get(getSingleLocation)
   .put(updateLocation)
@@ -27,8 +30,7 @@ router.route('/:id/:programId')
   .put(addProgram)
   .delete(removeProgram)
 
-router.route('/:id/newAddress')
-  .put(updateStreetAdress)
+
 
 
 export default router

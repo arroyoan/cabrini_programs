@@ -9,25 +9,26 @@ const locationSchema = mongoose.Schema({
   },
   locationWebsite:{
     type: String,
-    match: [
-      /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/,
-      'Please add a valid URL that starts with http or https'
-    ]
   },
   programs: [{type:mongoose.Schema.ObjectId, ref:'Program'}],
   GeoJson:{},
   locationAddress: {
     type: String
+  },
+  updateAddress:{
+    type: Boolean,
+    default: false
   }
 })
 
 // model functions
 locationSchema.pre('save',async function(next){
-  if(this.GeoJson === undefined){
+  if(this.GeoJson === undefined || (this.updateAddress && this.locationAddress !== undefined)){
     const res = await geocoder.geocode(this.locationAddress)
     this.GeoJson = res[0]
     this.locationAddress = undefined
-  }
+    this.updateAddress = false
+  } 
   next()
 })
 

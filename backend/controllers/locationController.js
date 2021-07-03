@@ -109,13 +109,27 @@ const updateLocation = asyncHandler(async (req,res)=>{
 })
 
 // @desc    updates location address and GeoJSON information
-// @route   PUT /api/v1/locations/:id/newAddress
+// @route   PUT /api/v1/locations/newAddress/:id
 // @access  Private
 const updateStreetAdress = asyncHandler(async (req,res)=>{
   try {
-    
+    const location = await Location.findById(req.params.id)
+    if(location){
+      location.locationAddress = req.body.locationAddress || undefined
+      location.updateAddress = true
+      const updatedLocation = await location.save()
+
+      res.status(200).json(
+        updatedLocation
+      )
+    } else {
+      throw new Error(`Could not find location with id ${req.params.id}`)
+    }
   } catch (error) {
-    
+    console.error(error)
+    res.status(404).json({
+      err:error.message
+    })
   }
 })
 
