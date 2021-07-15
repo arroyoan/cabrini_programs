@@ -10,13 +10,14 @@ export const listPrograms = (keywords='',programs='',partners='') => async (disp
   try {
     dispatch({type:PROGRAM_LIST_REQEST})
 
-    const {data} = await axios.get(`/api/programs/`)
+    const {data} = await axios.get(`/api/v1/programs/`)
     dispatch({
       type:PROGRAM_LIST_SUCCESS,
       payload:data
     })
     
   } catch (error) {
+    console.error(error)
     dispatch({
       type:PROGRAM_LIST_FAIL,
       payload: error.response && error.response.data.message
