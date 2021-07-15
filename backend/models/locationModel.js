@@ -32,6 +32,6 @@ locationSchema.pre('save',async function(next){
   next()
 })
 
-const Location = mongoose.model('locationSchema',locationSchema)
+const Location = mongoose.model('Location',locationSchema)
 
 export default Location

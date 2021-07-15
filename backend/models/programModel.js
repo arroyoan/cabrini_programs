@@ -60,7 +60,7 @@ const programSchema = new mongoose.Schema({
       type: String,
     },
   },
-  locations: [{type:mongoose.Schema.ObjectId, ref:'locationSchema'}],
+  locations: [{type:mongoose.Schema.ObjectId, ref:'Location'}],
   // tags:{
 
   // },
