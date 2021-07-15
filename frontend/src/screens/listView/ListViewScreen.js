@@ -16,7 +16,9 @@ const ListViewScreen = () => {
 
   return (
     <div>
+      <h2>Confirmation that this is loading</h2>
       {loading ? <h1>Loading...</h1> : console.log(programs)}
+      {error ? <h1>{error.message}</h1> : <h1>Woops...</h1> }
     </div>
   )
 }
