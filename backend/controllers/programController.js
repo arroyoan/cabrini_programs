@@ -10,6 +10,8 @@ const getAllPrograms = asyncHandler(async (req,res)=>{
   try {
     const documentCount = await Program.countDocuments({})
     const programs = await Program.find({})
+      .populate({path:'locations', select:'id locationName'})
+      .populate({path:'categories'})
     res.status(200)
       .json({
         documentCount,

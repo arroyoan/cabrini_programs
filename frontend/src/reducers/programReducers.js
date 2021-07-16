@@ -12,7 +12,8 @@ export const programListReducer = (state = { progams:[] }, action) =>{
     case PROGRAM_LIST_SUCCESS:
       return {
         loading:false,
-        programs:action.payload.programs
+        programs:action.payload.programs,
+        documentCount:action.payload.documentCount
       }
     case PROGRAM_LIST_FAIL:
       return {loading:false,error:action.payload}

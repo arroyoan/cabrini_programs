@@ -1,14 +1,16 @@
 import React, {useEffect} from 'react'
+import styles from './ListViewScreen.module.css'
 import {useDispatch,useSelector} from 'react-redux'
 
 import { listPrograms } from '../../actions/programActions'
+import ListViewItem from '../../components/ListViewItem/ListViewItem'
 
 const ListViewScreen = () => {
   const dispatch = useDispatch()
 
   // selects the program list from the state
   const programList = useSelector(state => state.programList)
-  const {loading, error, programs} = programList
+  const {loading, error, programs, documentCount} = programList
 
   // loads the program list based on the filters the user selected
   useEffect(()=>{
@@ -17,9 +19,15 @@ const ListViewScreen = () => {
 
   return (
     <div>
-      <h2>Confirmation that this is loading</h2>
-      {loading ? <h1>Loading...</h1> : console.log(programs)}
+      {loading && <h1>Loading...</h1> }
       {error && <h1>{error.message}</h1> }
+      {programs && 
+      <div className={styles.listViewItems}>
+        {/* <div>{`Showing ${documentCount} of ${documentCount}`}</div> */}
+        {programs.map((program)=>{
+          return <ListViewItem key={program._id} program={program}/>
+        })}
+      </div>}
     </div>
   )
 }

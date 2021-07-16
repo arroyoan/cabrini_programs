@@ -1,0 +1,49 @@
+.listViewItem {
+  width: 60%;
+  border-top: solid 1px lightslategray;
+  border-bottom: solid 1px lightslategray;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0.5rem;
+}
+
+.itemTitle {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.itemContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 0.5rem;
+}
+
+.itemDescription {
+  border-right: solid 1px lightslategray;
+  width: 80%;
+}
+
+.itemContact {
+  padding: 0.5rem;
+}
+
+.itemPartners {
+}
+
+.itemPartners:hover {
+  cursor: pointer;
+}
+
+.itemPartners ul {
+  list-style: none;
+  border-top: solid 1px lightslategray;
+  /* margin-top: 1rem; */
+  padding-top: 0.5rem;
+  /* padding-bottom: 0.5rem; */
+  padding-left: 1rem;
+}
+
+.itemPartners p {
+  color: rgb(45, 92, 136);
+}
