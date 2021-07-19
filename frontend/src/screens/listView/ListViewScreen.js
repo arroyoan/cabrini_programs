@@ -10,7 +10,7 @@ const ListViewScreen = () => {
 
   // selects the program list from the state
   const programList = useSelector(state => state.programList)
-  const {loading, error, programs, documentCount} = programList
+  const {loading, error, programs/*, documentCount*/} = programList
 
   // loads the program list based on the filters the user selected
   useEffect(()=>{

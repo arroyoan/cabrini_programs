@@ -12,6 +12,13 @@
   padding-bottom: 0.5rem;
 }
 
+.itemTitle h3 {
+  font-size: 14px;
+  color: lightslategray;
+  font-weight: 300;
+  padding-top: 0.2rem;
+}
+
 .itemContent {
   display: flex;
   flex-direction: row;
@@ -46,4 +53,9 @@
 
 .itemPartners p {
   color: rgb(45, 92, 136);
+}
+
+.NavLink {
+  color: black;
+  text-decoration: none;
 }

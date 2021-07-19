@@ -1,0 +1,29 @@
+.singleProgram {
+  display: flex;
+  justify-content: center;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.programContent {
+  display: flex;
+  flex-direction: row;
+  /* padding: 4rem 6rem; */
+}
+
+.aboutProgram {
+  max-width: 800px;
+  padding-right: 5rem;
+}
+
+.programName {
+  font-size: 24px;
+  padding-bottom: 1rem;
+}
+
+.programBlurb {
+  padding-bottom: 1rem;
+  padding-right: 5rem;
+  font-size: 20px;
+  line-height: 1.65;
+}

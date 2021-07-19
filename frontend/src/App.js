@@ -10,6 +10,7 @@ import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import ListViewScreen from './screens/listView/ListViewScreen'
 import HomeScreen from './screens/HomeScreen/HomeScreen';
+import SingleProgramScreen from './screens/SingleProgramScreen/SingleProgramScreen';
 
 const App = ()=> {
   return (
@@ -18,6 +19,7 @@ const App = ()=> {
         <Switch>
           <Route path="/programs/listview" component={ListViewScreen}/>
           <Route path="/programs/mapview" component={ListViewScreen}/>
+          <Route path="/programs/:programId" component={SingleProgramScreen}/>
           <Route exact path="/" component={HomeScreen}/>
 
         </Switch>

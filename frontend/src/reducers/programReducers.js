@@ -1,7 +1,10 @@
 import {
   PROGRAM_LIST_REQEST,
   PROGRAM_LIST_SUCCESS,
-  PROGRAM_LIST_FAIL
+  PROGRAM_LIST_FAIL,
+  SINGLE_PROGRAM_REQEST,
+  SINGLE_PROGRAM_SUCCESS,
+  SINGLE_PROGRAM_FAIL
 } from '../constants/programConstants'
 
 export const programListReducer = (state = { progams:[] }, action) =>{
@@ -19,5 +22,27 @@ export const programListReducer = (state = { progams:[] }, action) =>{
       return {loading:false,error:action.payload}
     default:
       return state
+  }
+}
+
+export const singleProgramReducer = (state={program:{}},action) =>{
+  switch (action.type) {
+    case SINGLE_PROGRAM_REQEST:  
+      return {loading:true, program:{}}
+
+    case SINGLE_PROGRAM_SUCCESS:
+      return {
+        loading:false,
+        program: action.payload,
+      }
+    
+    case SINGLE_PROGRAM_FAIL:
+      return {
+        loading:false,
+        error:action.payload
+      }
+  
+    default:
+      return state;
   }
 }

@@ -5,7 +5,8 @@ import {
 } from 'redux'
 
 import {
-  programListReducer
+  programListReducer,
+  singleProgramReducer,
 } from './reducers/programReducers'
 
 import thunk from 'redux-thunk'
@@ -16,7 +17,8 @@ import {
 
 // combines all the reducers together
 const reducer = combineReducers({
-  programList:programListReducer
+  programList:programListReducer,
+  singleProgram:singleProgramReducer,
 })
 
 // creates an initial state from objects in local storage if there are any
