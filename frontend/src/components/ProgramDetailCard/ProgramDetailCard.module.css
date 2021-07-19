@@ -1,0 +1,13 @@
+.programCard {
+}
+
+.programCard h3 {
+  font-size: 20px;
+  padding-bottom: 1rem;
+}
+
+.programCard p {
+  padding-right: 3rem;
+  padding-bottom: 1rem;
+  font-size: 16px;
+}

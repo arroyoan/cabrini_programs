@@ -2,6 +2,8 @@ import React, {useEffect} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import styles from './SingleProgramScreen.module.css'
 
+import ProgramDetailCard from '../../components/ProgramDetailCard/ProgramDetailCard'
+import ProgramContactCard from '../../components/ProgramContactCard/ProgramContactCard'
 import {getSingleProgram}  from '../../actions/programActions'
 
 const SingleProgramScreen = ({match}) => {
@@ -21,7 +23,6 @@ const SingleProgramScreen = ({match}) => {
       {error && <h1>{error.message}</h1> }
       {(program !== undefined && program.programName) &&
         <div className={styles.programContent}>
-          {console.log(program)}
           <div className={styles.aboutProgram}>
             <div className={styles.programName}>
               <h2>{program.programName}</h2>
@@ -30,33 +31,43 @@ const SingleProgramScreen = ({match}) => {
             <div className={styles.programBlurb}> <p>{program.description.blurb}</p></div>
             <div className="programDetails">
               {/* this is a tempory div to show program mission */}
-              {program.description.mission && <div>{program.description.mission}</div> }
-              {program.description.services && <div>{program.description.services}</div> }
-              {program.description.whoWeServed && <div>{program.description.whoWeServed}</div> }
+              {program.description.mission && <ProgramDetailCard title="Mission" content={program.description.mission}/> }
+              {program.description.services && <ProgramDetailCard title="Services" content={program.description.services}/> }
+              {program.description.whoWeServed && <ProgramDetailCard title="Who We Serve" content={program.description.whoWeServed}/> }
+              
             </div>
             {/* eventually add tags for program */}
           </div>
           <div className="programInfo">
-            <div className="generalInfo">
-              <h3>General Information</h3>
-              {program.programEmail && <p>{program.programEmail}</p> }
-              {program.programPhoneNumber && <p>{program.programPhoneNumber}</p>}
-              {program.programWebsite&& <p>{program.programWebsite}</p>}
+            <ProgramContactCard 
+              title="General Information" 
+              info={{
+                email:program.programEmail,
+                phoneNumber:program.programPhoneNumber,
+                website:program.programWebsite
+              }}/>
+
+            <ProgramContactCard 
+              title="Partnership Information" 
+              info={{
+                contact:program.partnershipInfo.partnerName,
+                email:program.partnershipInfo.partnerEmail,
+                phoneNumber:program.partnershipInfo.partnerPhone,
+                website:program.partnershipInfo.partnerWebsite
+              }}/>
+              
+            <ProgramContactCard 
+              title="Partnership Information"
+              info={{
+                contact:program.campusAffiliation.campusBranchName,
+                website:program.campusAffiliation.campusBranchWebsite,
+                address:program.campusAffiliation.campusStreetAddress
+              }}/>
+            
+            <div className="programLocations">
+              
             </div>
-            <div className="partnerInfo">
-              <h3>Partnership Information</h3>
-              {program.partnershipInfo.partnerName && <p>{program.partnershipInfo.partnerName}</p> }
-              {program.partnershipInfo.partnerEmail && <p>{program.partnershipInfo.partnerEmail}</p> }
-              {program.partnershipInfo.partnerPhone && <p>{program.partnershipInfo.partnerPhone}</p> }
-              {program.partnershipInfo.partnerWebsite && <p>{program.partnershipInfo.partnerWebsite}</p> }
-            </div>
-            <div className="campusAffilInfo">
-              <h3>Campus Affiliation</h3>
-              {program.campusAffiliation.campusBranchName && <p>{program.campusAffiliation.campusBranchName}</p> }
-              {program.campusAffiliation.campusBranchWebsite && <p>{program.campusAffiliation.campusBranchWebsite}</p> }
-              {program.campusAffiliation.campusStreetAddress && <p>{program.campusAffiliation.campusStreetAddress}</p> }
-            </div>
-            <div className="programLocations"></div>
+
           </div>
         </div>
       }
