@@ -23,6 +23,7 @@ const SingleProgramScreen = ({match}) => {
       {error && <h1>{error.message}</h1> }
       {(program !== undefined && program.programName) &&
         <div className={styles.programContent}>
+          {console.log(program)}
           <div className={styles.aboutProgram}>
             <div className={styles.programName}>
               <h2>{program.programName}</h2>
@@ -46,7 +47,7 @@ const SingleProgramScreen = ({match}) => {
                 phoneNumber:program.programPhoneNumber,
                 website:program.programWebsite
               }}/>
-
+            { program.partnershipInfo &&
             <ProgramContactCard 
               title="Partnership Information" 
               info={{
@@ -55,17 +56,18 @@ const SingleProgramScreen = ({match}) => {
                 phoneNumber:program.partnershipInfo.partnerPhone,
                 website:program.partnershipInfo.partnerWebsite
               }}/>
-              
-            <ProgramContactCard 
-              title="Partnership Information"
+            } 
+            { program.campusAffiliation &&
+              <ProgramContactCard 
+              title="Campus Affiliation"
               info={{
                 contact:program.campusAffiliation.campusBranchName,
                 website:program.campusAffiliation.campusBranchWebsite,
                 address:program.campusAffiliation.campusStreetAddress
               }}/>
-            
+            }
             <div className="programLocations">
-              
+
             </div>
 
           </div>

@@ -9,7 +9,7 @@ const ListViewItem = ({program}) => {
     <div className={styles.listViewItem}>
       <div className={styles.itemTitle}>
         <h2> <NavLink className={styles.NavLink} to={`/programs/${program._id}`}>{program.programName}</NavLink></h2>
-        <h3>{program.campusAffiliation.campusBranchName}</h3>
+        {(program.campusAffiliation && program.campusAffiliation.campusBranchName) && <h3>{program.campusAffiliation.campusBranchName}</h3>}
       </div>
 
       <div className={styles.itemContent}>
