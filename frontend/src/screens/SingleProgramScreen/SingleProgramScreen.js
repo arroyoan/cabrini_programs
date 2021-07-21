@@ -4,6 +4,8 @@ import styles from './SingleProgramScreen.module.css'
 
 import ProgramDetailCard from '../../components/ProgramDetailCard/ProgramDetailCard'
 import ProgramContactCard from '../../components/ProgramContactCard/ProgramContactCard'
+import LocationList from '../../components/LocationList/LocationList'
+
 import {getSingleProgram}  from '../../actions/programActions'
 
 const SingleProgramScreen = ({match}) => {
@@ -21,6 +23,7 @@ const SingleProgramScreen = ({match}) => {
     <div className={styles.singleProgram} >
       {loading && <h1>Loading...</h1> }
       {error && <h1>{error.message}</h1> }
+
       {(program !== undefined && program.programName) &&
         <div className={styles.programContent}>
           {console.log(program)}
@@ -28,18 +31,18 @@ const SingleProgramScreen = ({match}) => {
             <div className={styles.programName}>
               <h2>{program.programName}</h2>
             </div>
-            {/* <div className="programAffil"></div> */}
+            {/* This is to add a statment directly below the name of the program <div className="programAffil"></div> */}
             <div className={styles.programBlurb}> <p>{program.description.blurb}</p></div>
-            <div className="programDetails">
-              {/* this is a tempory div to show program mission */}
+
+            <div id="programDetails">
               {program.description.mission && <ProgramDetailCard title="Mission" content={program.description.mission}/> }
               {program.description.services && <ProgramDetailCard title="Services" content={program.description.services}/> }
               {program.description.whoWeServed && <ProgramDetailCard title="Who We Serve" content={program.description.whoWeServed}/> }
-              
             </div>
             {/* eventually add tags for program */}
           </div>
-          <div className="programInfo">
+
+          <div id="programInfo">
             <ProgramContactCard 
               title="General Information" 
               info={{
@@ -59,16 +62,14 @@ const SingleProgramScreen = ({match}) => {
             } 
             { program.campusAffiliation &&
               <ProgramContactCard 
-              title="Campus Affiliation"
-              info={{
-                contact:program.campusAffiliation.campusBranchName,
-                website:program.campusAffiliation.campusBranchWebsite,
-                address:program.campusAffiliation.campusStreetAddress
-              }}/>
+                title="Campus Affiliation"
+                info={{
+                  contact:program.campusAffiliation.campusBranchName,
+                  website:program.campusAffiliation.campusBranchWebsite,
+                  address:program.campusAffiliation.campusStreetAddress
+                }}/>
             }
-            <div className="programLocations">
-
-            </div>
+            { program.locations && <LocationList locations={program.locations}></LocationList> }
 
           </div>
         </div>

@@ -1,0 +1,19 @@
+.locationList {
+  padding-top: 1rem;
+}
+
+.locationList ul {
+  list-style: none;
+}
+.locationList li {
+  padding-top: 0.5rem;
+}
+
+.locationList a {
+  text-decoration: underline;
+  color: black;
+}
+
+.locationList a:hover {
+  text-decoration: none;
+}
