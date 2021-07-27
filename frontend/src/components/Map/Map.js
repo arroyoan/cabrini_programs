@@ -1,31 +1,35 @@
 import React, { useRef, useEffect } from 'react';
+import ReactDOM from 'react-dom'
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import {useSelector, useDispatch} from 'react-redux'
 
 import styles from './Map.module.css'
 import {listLocations} from '../../actions/locationActions'
-
-console.log(process.env.REACT_APP_MAPBOX)
+import PopUp from '../PopUp/PopUp'
 
 mapboxgl.accessToken = "pk.eyJ1IjoiYW5vZWwxMjE0IiwiYSI6ImNrcmZhZjRucjV2MnoycG1mOGttempuOHkifQ.vv0SKucOmqui3LeYloubQQ"
 
-const Map = () => {
+const Map = ({history}) => {
    const dispatch = useDispatch();
 
+   // gets the location data from the state
    const locationList = useSelector(state => state.locationList)
    const {error,locations} = locationList
- 
+  
+   // defaults for the map
   const mapContainer = useRef(null);
   const map = useRef(null);
+  const popUpRef = useRef(new mapboxgl.Popup({ className:styles.mapbox_popup_content,offset: 15 }));
   const lng =  -75.37415783339138;
   const lat= 40.056082679718784;
   const zoom = 11;
 
-
+  // once the page loads it will dispatch the action retrieve the location data
   useEffect(()=>{
     dispatch(listLocations())
   },[dispatch])
 
+  // creates the map if it doesnt exist
   useEffect(() => {
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
@@ -39,18 +43,15 @@ const Map = () => {
   
   // adds the markers to the map if map is loaded and locations are loaded
   useEffect(()=>{
+    // if the map or locations dont exist it returns nothing
     if(!map.current || !locations || locations.length === 0){
-      console.log("does it go here")
       return 
     }
 
     // iterates throught locations and reshapes the data to for adding it as a marker on the map
     const features = createFeatures()
-
-    // console.log(map)
-    // console.log(features)
-
     
+    // strucure needed to for add layer function
     const mapLocations = {
       "type":"FeatureCollection",
       "features":features
@@ -70,38 +71,37 @@ const Map = () => {
     
     // creates an empty div for each marker
       mapLocations.features.forEach(location=>{
-        // console.log(location.geometry.coordinates)
+        // creates empty div and adds the marker styles
         const el = document.createElement('div')
         el.className=styles.marker
 
-        // // add event listener for each map
-        // el.addEventListener('click',(e)=>{
-        //   //console.log(location)
-        //   //createPopUp(location)
-        // })
-        // add the marker to the new layer on the map
+        // creates new marker, sets its coordinates, and adds it to the map
+        // eslint-disable-next-line
         const marker = new mapboxgl.Marker(el)
           .setLngLat(location.geometry.coordinates)
           .addTo(map.current)
-       // console.log(marker)
   })
 
   // eslint-disable-next-line
   },[locations,map])
 
+  // handles the display of popups when markers are clicked
   useEffect(()=>{
+    // when a location point is clicked it centers the map to the point and shows a popup
     map.current.on('click','locations',(e)=>{
-      console.log('it is in here')
-      console.log(e)
-      console.log(e.features[0])
-
+      // gets the div where the popups are stored in mapbox
       const popups = document.getElementsByClassName('mapboxgl-popup')
-      if(popups[0]) popups[0].remove();
-      const popup= new mapboxgl.Popup({className:styles.mapboxgl_pop_content})
-        .setLngLat(e.features[0].geometry.coordinates)
-        .setHTML("<h1>Hello World!</h1>")
-        .addTo(map.current)
 
+      // if there is a popup already open it removes that popup
+      if(popups[0]) popups[0].remove();
+
+      // center the map to the coordinates of the pointer
+      flyTo(e.features[0].geometry.coordinates)
+
+      // create a popup component
+      const popupnode = document.createElement('div')
+      ReactDOM.render(<PopUp history={history} properties={e.features[0].properties}/>,popupnode)
+      popUpRef.current.setLngLat(e.features[0].geometry.coordinates).setDOMContent(popupnode).addTo(map.current)
     })
   },[map])
 
@@ -126,23 +126,34 @@ const Map = () => {
     })
   }
 
-  const createPopUp = (feature)=>{
-    const popups = document.getElementsByClassName('mapboxgl-popup')
-    console.log(popups)
+  // eslint-disable-next-line
+  // const createPopUp = (feature)=>{
+  //   const popups = document.getElementsByClassName('mapboxgl-popup')
+  //   console.log(popups)
 
-    if(popups[0]) popups[0].remove();
-    console.log('about to create the popup')
-    const popup= new mapboxgl.Popup({className:styles.mapboxgl_pop_content})
-      .setLngLat(feature.geometry.coordinates)
-      .setHTML("<h1>Hello World!</h1>")
-      .addTo(map.current)
+  //   if(popups[0]) popups[0].remove();
+  //   console.log('about to create the popup')
+  //   const popup= new mapboxgl.Popup({className:styles.mapboxgl_pop_content})
+  //     .setLngLat(feature.geometry.coordinates)
+  //     .setHTML("<h1>Hello World!</h1>")
+  //     .addTo(map.current)
 
-    console.log(popup)
-    console.log(map.current)
+  //   console.log(popup)
+  //   console.log(map.current)
+  // }
+
+  // eslint-disable-next-line
+  const flyTo = (coords)=>{
+    map.current.flyTo({
+      center: coords,
+      zoom: zoom,
+      speed: 0.2,
+      });
   }
 
   return (
     <div className={styles.mapContainer}>
+      {console.log('hello')}
       {error && <h1>Trouble loading data points for map</h1> }
       <div ref={mapContainer} className={styles.mapContainer} />
     </div>

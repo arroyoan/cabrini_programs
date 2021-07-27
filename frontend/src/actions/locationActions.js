@@ -11,8 +11,6 @@ export const listLocations = (keywords='',programs='',partners='') => async (dis
 
     const {data} = await axios.get(`/api/v1/locations/`)
 
-    console.log(data)
-
     dispatch({
       type:LOCATION_LIST_SUCCESS,
       payload:data

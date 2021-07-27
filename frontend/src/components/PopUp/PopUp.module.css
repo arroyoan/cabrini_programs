@@ -1,0 +1,25 @@
+.popup__card {
+  padding: 5px;
+}
+
+.popup__heading {
+  font-size: 14px;
+  padding-bottom: 5px;
+}
+
+.popup__location {
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+.popup__location:hover {
+  cursor: pointer;
+}
+
+.popup__streetAddress {
+  font-size: 14px;
+}
+
+.popup__cityZip {
+  font-size: 14px;
+}
