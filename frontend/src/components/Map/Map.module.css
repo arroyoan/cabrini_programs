@@ -2,3 +2,58 @@
   height: 100%;
   width: 100%;
 }
+
+.marker {
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background-color: white;
+  border: solid 3px rgba(0, 32, 92, 0.7);
+}
+
+/* Marker tweaks */
+
+.mapbox_popup_content {
+  font: 400 15px/22px "Source Sans Pro", "Helvetica Neue", Sans-serif;
+  padding: 0;
+  width: 180px;
+}
+
+.mapboxgl-popup-content-wrapper {
+  padding: 1%;
+}
+
+.mapbox_popup_content h3 {
+  background: #91c949;
+  color: #fff;
+  margin: 0;
+  display: block;
+  padding: 10px;
+  border-radius: 3px 3px 0 0;
+  font-weight: 700;
+  margin-top: -15px;
+}
+
+.mapbox_popup_content h4 {
+  margin: 0;
+  display: block;
+  padding: 10px;
+  font-weight: 400;
+}
+
+.mapbox_popup_content div {
+  padding: 10px;
+}
+
+.mapboxgl-container .leaflet-marker-icon {
+  cursor: pointer;
+}
+
+.mapboxgl-popup-anchor-top > .mapbox_popup_content {
+  margin-top: 15px;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+  border-bottom-color: #91c949;
+}
