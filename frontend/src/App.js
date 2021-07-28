@@ -12,6 +12,7 @@ import ListViewScreen from './screens/listView/ListViewScreen'
 import MapViewScreen from './screens/mapView/MapViewScreen'
 import HomeScreen from './screens/HomeScreen/HomeScreen';
 import SingleProgramScreen from './screens/SingleProgramScreen/SingleProgramScreen';
+import SingleLocationScreen from './screens/SingleLocationScreen/SingleLocationScreen';
 
 const App = ()=> {
   return (
@@ -21,6 +22,7 @@ const App = ()=> {
           <Route path="/programs/listview" component={ListViewScreen}/>
           <Route path="/programs/mapview" component={MapViewScreen}/>
           <Route path="/programs/:programId" component={SingleProgramScreen}/>
+          <Route path="/locations/:locationId" component={SingleLocationScreen}/>
           <Route exact path="/" component={HomeScreen}/>
 
         </Switch>

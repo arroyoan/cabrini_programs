@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './Header.module.css'
+import {Link} from 'react-router-dom'
 
 import SearchBar from '../SearchBar/SearchBar'
 
@@ -12,7 +13,7 @@ const Header = () => {
 
         {/* Handles the navigation between mapView and listView */}
         <div className={styles.header__navigation}>
-          <div className={styles.nav__logo}><h1>Cabrini Community Programs</h1></div>
+          <div className={styles.nav__logo}> <Link to={`/`}><h1>Cabrini Community Programs</h1></Link></div>
           <div className={styles.nav__buttons}>
             <button className={styles.nav__button} >
               <p>{'Map View'}</p> 

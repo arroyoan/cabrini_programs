@@ -10,13 +10,13 @@ import PopUp from '../PopUp/PopUp'
 mapboxgl.accessToken = "pk.eyJ1IjoiYW5vZWwxMjE0IiwiYSI6ImNrcmZhZjRucjV2MnoycG1mOGttempuOHkifQ.vv0SKucOmqui3LeYloubQQ"
 
 const Map = ({history}) => {
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-   // gets the location data from the state
-   const locationList = useSelector(state => state.locationList)
-   const {error,locations} = locationList
+  // gets the location data from the state
+  const locationList = useSelector(state => state.locationList)
+  const {error,locations} = locationList
   
-   // defaults for the map
+  // defaults for the map
   const mapContainer = useRef(null);
   const map = useRef(null);
   const popUpRef = useRef(new mapboxgl.Popup({ className:styles.mapbox_popup_content,offset: 15 }));
@@ -89,21 +89,18 @@ const Map = ({history}) => {
   useEffect(()=>{
     // when a location point is clicked it centers the map to the point and shows a popup
     map.current.on('click','locations',(e)=>{
-      // gets the div where the popups are stored in mapbox
       const popups = document.getElementsByClassName('mapboxgl-popup')
 
       // if there is a popup already open it removes that popup
       if(popups[0]) popups[0].remove();
 
-      // center the map to the coordinates of the pointer
       flyTo(e.features[0].geometry.coordinates)
-
       // create a popup component
       const popupnode = document.createElement('div')
       ReactDOM.render(<PopUp history={history} properties={e.features[0].properties}/>,popupnode)
       popUpRef.current.setLngLat(e.features[0].geometry.coordinates).setDOMContent(popupnode).addTo(map.current)
     })
-  },[map])
+  },[map,history])
 
   // helper function to structure location data appropriately
   const createFeatures = ()=>{
@@ -121,28 +118,13 @@ const Map = ({history}) => {
           "city":`${location.GeoJson.city}`,
           "stateCode":`${location.GeoJson.stateCode}`,
           "zipcode":`${location.GeoJson.zipcode}`,
+          "programs":`${location.programs}`
         }
       }
     })
   }
 
-  // eslint-disable-next-line
-  // const createPopUp = (feature)=>{
-  //   const popups = document.getElementsByClassName('mapboxgl-popup')
-  //   console.log(popups)
-
-  //   if(popups[0]) popups[0].remove();
-  //   console.log('about to create the popup')
-  //   const popup= new mapboxgl.Popup({className:styles.mapboxgl_pop_content})
-  //     .setLngLat(feature.geometry.coordinates)
-  //     .setHTML("<h1>Hello World!</h1>")
-  //     .addTo(map.current)
-
-  //   console.log(popup)
-  //   console.log(map.current)
-  // }
-
-  // eslint-disable-next-line
+  // helper function that centers the map on the clicked marker
   const flyTo = (coords)=>{
     map.current.flyTo({
       center: coords,
@@ -153,7 +135,6 @@ const Map = ({history}) => {
 
   return (
     <div className={styles.mapContainer}>
-      {console.log('hello')}
       {error && <h1>Trouble loading data points for map</h1> }
       <div ref={mapContainer} className={styles.mapContainer} />
     </div>

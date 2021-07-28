@@ -10,10 +10,12 @@
 .popup__location {
   font-size: 20px;
   padding-bottom: 10px;
+  width: max-content;
 }
 
 .popup__location:hover {
   cursor: pointer;
+  text-decoration: underline;
 }
 
 .popup__streetAddress {

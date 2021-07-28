@@ -1,0 +1,43 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 14rem;
+}
+
+.content__locationInfo {
+  padding-bottom: 2rem;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.336);
+  max-width: 680px;
+}
+
+.content__locationInfo h2 {
+  font-size: 40px;
+}
+
+.content__address {
+  font-size: 14px;
+  padding-top: 0.5rem;
+  line-height: 1.5;
+}
+
+.content__locationPrograms {
+  padding-top: 2rem;
+  max-width: 680px;
+}
+
+.content__locationPrograms h3 {
+  padding-bottom: 0.75rem;
+}
+
+.content__locationPrograms ul {
+  list-style: none;
+  padding-top: 0.5rem;
+}
+
+.content__locationPrograms li {
+  padding-bottom: 1.25rem;
+}
+
+.content__locationPrograms a {
+  color: black;
+}
