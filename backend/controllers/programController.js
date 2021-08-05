@@ -16,7 +16,7 @@ const getAllPrograms = asyncHandler(async (req,res)=>{
 
     // gets programs from database and populates locations and categories
     const results = await Program.find({...filters})
-      .populate({path:'locations', select:'id locationName categories'})
+      .populate({path:'locations'})
       .populate({path:'categories'})
 
     // filters programs and returns programs that have locations with categories in the filter list

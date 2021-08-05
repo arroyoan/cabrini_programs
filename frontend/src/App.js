@@ -13,12 +13,14 @@ import MapViewScreen from './screens/mapView/MapViewScreen'
 import HomeScreen from './screens/HomeScreen/HomeScreen';
 import SingleProgramScreen from './screens/SingleProgramScreen/SingleProgramScreen';
 import SingleLocationScreen from './screens/SingleLocationScreen/SingleLocationScreen';
+import MapListScreen from './screens/MapListScreen/MapListScreen';
 
 const App = ()=> {
   return (
     <Router>
       <Header/>
         <Switch>
+          <Route path="/programs/maplist" component={MapListScreen}/>
           <Route path="/programs/listview" component={ListViewScreen}/>
           <Route path="/programs/mapview" component={MapViewScreen}/>
           <Route path="/programs/:programId" component={SingleProgramScreen}/>

@@ -9,12 +9,12 @@ import PopUp from '../PopUp/PopUp'
 
 mapboxgl.accessToken = "pk.eyJ1IjoiYW5vZWwxMjE0IiwiYSI6ImNrcmZhZjRucjV2MnoycG1mOGttempuOHkifQ.vv0SKucOmqui3LeYloubQQ"
 
-const Map = ({history}) => {
+const Map = ({history,locations}) => {
   const dispatch = useDispatch();
 
-  // gets the location data from the state
-  const locationList = useSelector(state => state.locationList)
-  const {error,locations} = locationList
+  // // gets the location data from the state
+  // const locationList = useSelector(state => state.locationList)
+  // const {error,locations} = locationList
   
   // defaults for the map
   const mapContainer = useRef(null);
@@ -25,9 +25,9 @@ const Map = ({history}) => {
   const zoom = 11;
 
   // once the page loads it will dispatch the action retrieve the location data
-  useEffect(()=>{
-    dispatch(listLocations())
-  },[dispatch])
+  // useEffect(()=>{
+  //   dispatch(listLocations())
+  // },[dispatch])
 
   // creates the map if it doesnt exist
   useEffect(() => {
@@ -104,6 +104,7 @@ const Map = ({history}) => {
 
   // helper function to structure location data appropriately
   const createFeatures = ()=>{
+    console.log(locations);
     return locations.map(location=>{
       return {
         "type":"Feature",
@@ -135,7 +136,7 @@ const Map = ({history}) => {
 
   return (
     <div className={styles.mapContainer}>
-      {error && <h1>Trouble loading data points for map</h1> }
+      {/* {error && <h1>Trouble loading data points for map</h1> } */}
       <div ref={mapContainer} className={styles.mapContainer} />
     </div>
   )
