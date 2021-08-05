@@ -18,7 +18,8 @@ const locationSchema = mongoose.Schema({
   updateAddress:{
     type: Boolean,
     default: false
-  }
+  },
+  categories:[{type:mongoose.Schema.ObjectId, ref:'Category'}]
 })
 
 // model functions

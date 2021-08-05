@@ -8,7 +8,9 @@ import {
   updateStreetAdress,
   addProgram,
   removeProgram,
-  deleteLocaiton
+  addCategory,
+  removeCategory,
+  deleteLocation
 } from '../controllers/locationController.js'
 
 const router = express.Router()
@@ -24,11 +26,15 @@ router.route('/newAddress/:id')
 router.route('/:id')
   .get(getSingleLocation)
   .put(updateLocation)
-  .delete(deleteLocaiton)
+  .delete(deleteLocation)
 
 router.route('/:id/:programId')
   .put(addProgram)
   .delete(removeProgram)
+
+router.route('/:id/category/:categoryId')
+.put(addCategory)
+.delete(removeCategory)
 
 
 

@@ -3,15 +3,26 @@ import Location from '../models/locationModel.js'
 import Category from '../models/categoryModel.js'
 import asyncHandler from 'express-async-handler'
 
+import getSearchItems from '../utils/getSearchItems.js'
+import filter from '../utils/filter.js'
+
 // @desc    Gets all programs
 // @route   GET /api/v1/programs/
 // @access  Public
 const getAllPrograms = asyncHandler(async (req,res)=>{
   try {
-    const documentCount = await Program.countDocuments({})
-    const programs = await Program.find({})
-      .populate({path:'locations', select:'id locationName'})
+    // helper functions that creates the filters that the user has passed in
+    const [filters,locationFilter] = getSearchItems(req.query)
+
+    // gets programs from database and populates locations and categories
+    const results = await Program.find({...filters})
+      .populate({path:'locations', select:'id locationName categories'})
       .populate({path:'categories'})
+
+    // filters programs and returns programs that have locations with categories in the filter list
+    const programs = filter(results,locationFilter)
+    const documentCount = programs.length
+
     res.status(200)
       .json({
         documentCount,

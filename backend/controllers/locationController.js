@@ -1,5 +1,6 @@
 import Location from '../models/locationModel.js'
 import Program from '../models/programModel.js'
+import Category from '../models/categoryModel.js'
 import asyncHandler from 'express-async-handler'
 
 // @desc    Gets all locations
@@ -8,7 +9,9 @@ import asyncHandler from 'express-async-handler'
 const getAllLocations = asyncHandler(async (req,res)=>{
   try {
     const numLocation =await Location.countDocuments()
-    const locations = await Location.find({}).populate({path:'programs', select: '_id programName'})
+    const locations = await Location.find({})
+      .populate({path:'programs', select: '_id programName'})
+      .populate({path:'categories', select: '_id categoryName'})
     res.status(200).json({
       numLocation,
       locations
@@ -25,7 +28,9 @@ const getAllLocations = asyncHandler(async (req,res)=>{
 // @access  Public
 const getSingleLocation = asyncHandler(async (req,res)=>{
   try {
-    const location = await Location.findById(req.params.id).populate({path:'programs', select:'_id programName'})
+    const location = await Location.findById(req.params.id)
+      .populate({path:'programs', select:'_id programName'})
+      .populate({path:'categories', select: '_id categoryName'})
     if(location){
       res.status(200).json(location)
     } else{
@@ -185,10 +190,59 @@ const removeProgram = asyncHandler(async (req,res)=>{
   }
 })
 
+// @desc    Add category to a location
+// @route   PUT /api/location/:id/:categoryId
+// @access  Private
+const addCategory = asyncHandler(async (req,res)=>{
+  try {
+    const category = await Category.findById(req.params.categoryId)
+    const location = await Location.findById(req.params.id)
+
+    if(category && location && !location.categories.includes(category._id) ){
+      location.categories.push(category._id)
+      const updatedLocation = await location.save()
+
+      res.status(200).json(
+        updatedLocation
+      )
+    }
+    else{
+      // check which one is not found and throw appropriate error
+      throw new Error('Error')
+    }
+  } catch (error) {
+    res.status(404).json(
+      {err:error.message}
+    )
+  }
+})
+
+// @desc    Remove a category
+// @route   DELETE /api/v1/locations/:id/category/:categoryId
+// @access  Private
+const removeCategory = asyncHandler(async (req,res)=>{
+  try {
+    const location = await Location.findById(req.params.id)
+    const category = await Category.findById(req.params.categoryId)
+
+    if(location && category && location.categories.includes(req.params.categoryId)){
+      location.categories.pull(req.params.categoryId)
+      await location.save()
+      res.status(200).json(location)
+    } else{
+      throw new Error(`Could not find either program or category or category already in categories array`)
+    }
+  } catch (error) {
+    res.status(404).json({
+      err:error.message
+    })
+  }
+})
+
 // @desc    Delete Location and remove location from programs
 // @route   DELETE /api/location/:id/:programId
 // @access  Private
-const deleteLocaiton = asyncHandler(async (req,res)=>{
+const deleteLocation = asyncHandler(async (req,res)=>{
   try {
     const location = await Location.findById(req.params.id)
     if(location){
@@ -216,5 +270,7 @@ export {
   updateStreetAdress,
   addProgram,
   removeProgram,
-  deleteLocaiton
+  addCategory,
+  removeCategory,
+  deleteLocation
 }
