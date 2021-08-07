@@ -1,0 +1,6 @@
+.dropdown {
+  width: 200px;
+  height: 100%;
+  text-align: center;
+  border-right: 1px solid lightgray;
+}

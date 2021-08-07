@@ -3,7 +3,7 @@ import React, {useEffect} from 'react'
 import styles from './ListViewScreen.module.css'
 import {useDispatch,useSelector} from 'react-redux'
 
-
+// eslint-disable-next-line
 import { listPrograms } from '../../actions/programActions'
 import ListViewItem from '../../components/ListViewItem/ListViewItem'
 

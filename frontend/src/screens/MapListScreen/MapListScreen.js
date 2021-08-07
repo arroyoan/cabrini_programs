@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from 'react'
+import React, {useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 
 import { listPrograms } from '../../actions/programActions'
@@ -12,8 +12,11 @@ const MapListScreen = () => {
   const programList = useSelector(state => state.programList)
   const {loading, error, programs/*, documentCount*/} = programList
 
+  const mapListToggle = useSelector(state => state.mapListToggle)
+  const {mapList} = mapListToggle
+
+  // the locations array to be passed to mapview
   let locations = []
-  const [mapList, setMapList] = useState(true)
 
   // loads the program list based on the filters the user selected
   useEffect(()=>{
@@ -22,6 +25,7 @@ const MapListScreen = () => {
 
   // helper functions
   const getLocations = ()=>{
+    // searches through programs locations and adds them to an array, doesnt add duplicates
     const locSet = new Set()
     const locs = []
 
@@ -34,14 +38,11 @@ const MapListScreen = () => {
       }
     }
     locations = locs
-    console.log(locations)
-    console.log();
     locSet.clear()
   }
 
   // will get array of locations from programs
   if(programs !== undefined ){
-    console.log(programs);
     getLocations()
   }
 
@@ -49,14 +50,11 @@ const MapListScreen = () => {
   return (
     <div>
       {loading && <h1>...Loading</h1> }
-      {error && <h1>Sorry there seems to be an error on our side (0_0')</h1> }
-      <div>
-      <button onClick={()=>setMapList(!mapList)}>Click Me</button>
-      </div>
+      {error && <h1>Sorry, there seems to be an error on our side (0_0')!!</h1> }
       {programs !== undefined && (
         mapList 
-          ? <ListViewScreen />
-          : <MapViewScreen locations={locations}/>
+          ? <MapViewScreen locations={locations}/>
+          : <ListViewScreen />
       ) }
     </div>
   )

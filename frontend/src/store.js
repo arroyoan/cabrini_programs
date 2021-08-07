@@ -14,6 +14,14 @@ import {
   singleLocationReducer
 } from './reducers/locationReducers'
 
+import {
+  mapListToggleReducer
+} from './reducers/mapListReducers'
+
+import {
+  categoryListReducer
+} from './reducers/categoryReducers'
+
 import thunk from 'redux-thunk'
 
 import {
@@ -26,6 +34,8 @@ const reducer = combineReducers({
   singleProgram:singleProgramReducer,
   locationList:locationListReducer,
   singleLocation:singleLocationReducer,
+  mapListToggle:mapListToggleReducer,
+  categoryList:categoryListReducer,
 })
 
 // creates an initial state from objects in local storage if there are any

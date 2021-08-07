@@ -1,0 +1,19 @@
+.toggle {
+  position: absolute;
+  right: 25px;
+}
+
+.toggle button {
+  padding: 10px;
+  background-color: transparent;
+  border: solid 2px white;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.toggle button:hover {
+  cursor: pointer;
+  color: #fdb71a;
+  border-color: #fdb71a;
+}

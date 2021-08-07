@@ -1,15 +1,18 @@
 import React, { useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom'
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+// eslint-disable-next-line
 import {useSelector, useDispatch} from 'react-redux'
 
 import styles from './Map.module.css'
+// eslint-disable-next-line
 import {listLocations} from '../../actions/locationActions'
 import PopUp from '../PopUp/PopUp'
 
 mapboxgl.accessToken = "pk.eyJ1IjoiYW5vZWwxMjE0IiwiYSI6ImNrcmZhZjRucjV2MnoycG1mOGttempuOHkifQ.vv0SKucOmqui3LeYloubQQ"
 
 const Map = ({history,locations}) => {
+  // eslint-disable-next-line
   const dispatch = useDispatch();
 
   // // gets the location data from the state
@@ -104,7 +107,6 @@ const Map = ({history,locations}) => {
 
   // helper function to structure location data appropriately
   const createFeatures = ()=>{
-    console.log(locations);
     return locations.map(location=>{
       return {
         "type":"Feature",

@@ -1,6 +1,6 @@
 .mapView {
   position: absolute;
   width: 100%;
-  height: calc(100% - 115px);
-  top: 115px;
+  height: calc(100% - 127px);
+  top: 127px;
 }
