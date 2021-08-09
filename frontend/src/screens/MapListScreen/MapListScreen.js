@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
+import {useLocation} from 'react-router-dom'
 
 import { listPrograms } from '../../actions/programActions'
 import ListViewScreen from '../listView/ListViewScreen'
 import MapViewScreen from '../mapView/MapViewScreen'
 
 const MapListScreen = () => {
+  let location =useLocation()
   const dispatch = useDispatch()
 
   // selects the program list from the state
@@ -15,16 +17,35 @@ const MapListScreen = () => {
   const mapListToggle = useSelector(state => state.mapListToggle)
   const {mapList} = mapListToggle
 
+  
+  let keyword,program,partner;
+
+  if(location.search){
+    let [kW,pG,pT] = location.search.replace('?','').split('&')
+    // console.log(kW)
+    // console.log(pG)
+    // console.log(pT)
+    // console.log()
+    keyword = kW.split('=')[1] || ''
+    program = pG.split('=')[1] || ''
+    partner = pT.split('=')[1] || ''
+    // console.log(keyword)
+    // console.log(program)
+    // console.log(partner)
+    // console.log()
+  } 
+
   // the locations array to be passed to mapview
   let locations = []
 
   // loads the program list based on the filters the user selected
   useEffect(()=>{
-    dispatch(listPrograms())
-  },[dispatch])
+    dispatch(listPrograms(keyword,program,partner))
+  },[dispatch,location])
 
   // helper functions
   const getLocations = ()=>{
+    console.log(programs);
     // searches through programs locations and adds them to an array, doesnt add duplicates
     const locSet = new Set()
     const locs = []
@@ -38,6 +59,8 @@ const MapListScreen = () => {
       }
     }
     locations = locs
+    console.log("THIS IS IN MAPSCREEN");
+    console.log(locations);
     locSet.clear()
   }
 

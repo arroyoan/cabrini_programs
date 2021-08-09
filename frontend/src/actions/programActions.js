@@ -9,11 +9,18 @@ import {
   SINGLE_PROGRAM_FAIL
 } from '../constants/programConstants'
 
-export const listPrograms = (keywords='',programs='',partners='') => async (dispatch)=> {
+export const listPrograms = (keyword='',program='',partner='') => async (dispatch)=> {
   try {
     dispatch({type:PROGRAM_LIST_REQEST})
 
-    const {data} = await axios.get(`/api/v1/programs/`)
+    console.log(keyword)
+    console.log(program)
+    console.log(partner);
+
+    const {data} = await axios.get(`/api/v1/programs?keyword=${keyword}&program=${program}&partner=${partner}`)
+
+    console.log(data);
+    
     dispatch({
       type:PROGRAM_LIST_SUCCESS,
       payload:data

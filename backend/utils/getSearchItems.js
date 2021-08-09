@@ -10,7 +10,7 @@ const getSearchItems = (query)=>{
     
   const program = query.program 
     ? {
-        categories: query.program.split(',')
+        categories: {$all : query.program.split(',')}
     } 
     :{}
 

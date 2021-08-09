@@ -4,10 +4,10 @@ import {
   CATEGORY_LIST_FAIL
 } from '../constants/categoryConstants'
 
-export const categoryListReducer = (state={},action) =>{
+export const categoryListReducer = (state=[],action) =>{
   switch (action.type) {
     case CATEGORY_LIST_REQEST:
-      return {loading:true,categories:{}}
+      return {loading:true,categories:[]}
 
     case CATEGORY_LIST_SUCCESS:
       return {loading:false, categories:action.payload}

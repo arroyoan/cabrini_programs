@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 
 import Header from './components/Header/Header'
+import InformationBar from './components/InformationBar/InformationBar';
 //import Footer from './components/Footer/Footer'
 import ListViewScreen from './screens/listView/ListViewScreen'
 import MapViewScreen from './screens/mapView/MapViewScreen'
@@ -19,6 +20,7 @@ const App = ()=> {
   return (
     <Router>
       <Header/>
+      <InformationBar/>
         <Switch>
           <Route path="/programs/maplist" component={MapListScreen}/>
           <Route path="/programs/listview" component={ListViewScreen}/>

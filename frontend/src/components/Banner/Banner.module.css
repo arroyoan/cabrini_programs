@@ -1,7 +1,9 @@
 .banner {
-  background-color: #00205c;
+  max-width: 1180px;
   width: 100%;
+  margin: 0 auto;
   display: flex;
   padding: 20px 0;
   align-items: center;
+  position: relative;
 }

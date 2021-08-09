@@ -11,6 +11,9 @@ import {
 const Filters = () => {
   const dispatch = useDispatch()
 
+  let programCats = []
+  let locationCats = []
+
   const categoryList = useSelector(state => state.categoryList)
   //eslint-disable-next-line
   const {loading, error, categories} = categoryList
@@ -20,11 +23,20 @@ const Filters = () => {
     dispatch(getCategories())
   }, [dispatch])
 
+  if(categories !== undefined && categories.length !== 0){
+    categories.forEach(category => {
+      if(category.categoryType === 'program')
+        programCats.push(category)
+      else if(category.categoryType === 'location')
+        locationCats.push(category)
+    });
+  }
+
   return (
     <div className={styles.filters}>
       <SearchBar/>
-      <DropdownMenu/>
-      <DropdownMenu/>
+      <DropdownMenu menuTitle={'Programs'} cats={programCats}/>
+      <DropdownMenu menuTitle={'Partners'} cats={locationCats}/>
     </div>
   )
 }

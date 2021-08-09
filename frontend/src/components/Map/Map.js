@@ -1,24 +1,14 @@
 import React, { useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom'
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-// eslint-disable-next-line
-import {useSelector, useDispatch} from 'react-redux'
 
 import styles from './Map.module.css'
-// eslint-disable-next-line
-import {listLocations} from '../../actions/locationActions'
 import PopUp from '../PopUp/PopUp'
 
 mapboxgl.accessToken = "pk.eyJ1IjoiYW5vZWwxMjE0IiwiYSI6ImNrcmZhZjRucjV2MnoycG1mOGttempuOHkifQ.vv0SKucOmqui3LeYloubQQ"
 
 const Map = ({history,locations}) => {
-  // eslint-disable-next-line
-  const dispatch = useDispatch();
 
-  // // gets the location data from the state
-  // const locationList = useSelector(state => state.locationList)
-  // const {error,locations} = locationList
-  
   // defaults for the map
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -26,11 +16,6 @@ const Map = ({history,locations}) => {
   const lng =  -75.37415783339138;
   const lat= 40.056082679718784;
   const zoom = 11;
-
-  // once the page loads it will dispatch the action retrieve the location data
-  // useEffect(()=>{
-  //   dispatch(listLocations())
-  // },[dispatch])
 
   // creates the map if it doesnt exist
   useEffect(() => {
@@ -93,14 +78,16 @@ const Map = ({history,locations}) => {
     // when a location point is clicked it centers the map to the point and shows a popup
     map.current.on('click','locations',(e)=>{
       const popups = document.getElementsByClassName('mapboxgl-popup')
+      console.log(popups);
 
       // if there is a popup already open it removes that popup
-      if(popups[0]) popups[0].remove();
+      if(popups[0]) 
+        popups[0].remove()
 
       flyTo(e.features[0].geometry.coordinates)
       // create a popup component
       const popupnode = document.createElement('div')
-      ReactDOM.render(<PopUp history={history} properties={e.features[0].properties}/>,popupnode)
+      ReactDOM.render(<PopUp history={history} properties={e.features[0].properties}/>, popupnode)
       popUpRef.current.setLngLat(e.features[0].geometry.coordinates).setDOMContent(popupnode).addTo(map.current)
     })
   },[map,history])
