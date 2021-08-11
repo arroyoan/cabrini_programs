@@ -4,6 +4,8 @@ import {useSelector,useDispatch} from 'react-redux'
 // eslint-disable-next-line
 import {Link} from 'react-router-dom'
 import styles from './SingleLocationScreen.module.css'
+import Spinner from '../../components/Spinner/Spinner'
+
 
 import {getLocation} from '../../actions/locationActions'
 
@@ -23,13 +25,9 @@ const SingleLocationScreen = ({match}) => {
     dispatch(getLocation(id))
   },[dispatch,id])
 
-  if(location){
-    console.log(location)
-  }
-
   return (
     <div>
-      {loading && <h1>Loading....</h1> }
+      {loading && <Spinner/> }
       {error && <h1>{error.message}</h1> }
       {(location!==undefined && location.locationName) && 
         <div className={styles.content}>

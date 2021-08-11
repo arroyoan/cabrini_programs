@@ -1,0 +1,10 @@
+.content {
+  padding: 12px 20px;
+  z-index: 1001;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.filters {
+  display: flex;
+}

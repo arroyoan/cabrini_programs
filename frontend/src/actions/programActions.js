@@ -13,13 +13,7 @@ export const listPrograms = (keyword='',program='',partner='') => async (dispatc
   try {
     dispatch({type:PROGRAM_LIST_REQEST})
 
-    console.log(keyword)
-    console.log(program)
-    console.log(partner);
-
     const {data} = await axios.get(`/api/v1/programs?keyword=${keyword}&program=${program}&partner=${partner}`)
-
-    console.log(data);
     
     dispatch({
       type:PROGRAM_LIST_SUCCESS,

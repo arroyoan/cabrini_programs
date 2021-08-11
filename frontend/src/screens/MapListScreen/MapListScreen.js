@@ -5,6 +5,8 @@ import {useLocation} from 'react-router-dom'
 import { listPrograms } from '../../actions/programActions'
 import ListViewScreen from '../listView/ListViewScreen'
 import MapViewScreen from '../mapView/MapViewScreen'
+import Spinner from '../../components/Spinner/Spinner'
+
 
 const MapListScreen = () => {
   let location =useLocation()
@@ -22,17 +24,9 @@ const MapListScreen = () => {
 
   if(location.search){
     let [kW,pG,pT] = location.search.replace('?','').split('&')
-    // console.log(kW)
-    // console.log(pG)
-    // console.log(pT)
-    // console.log()
     keyword = kW.split('=')[1] || ''
     program = pG.split('=')[1] || ''
     partner = pT.split('=')[1] || ''
-    // console.log(keyword)
-    // console.log(program)
-    // console.log(partner)
-    // console.log()
   } 
 
   // the locations array to be passed to mapview
@@ -45,7 +39,6 @@ const MapListScreen = () => {
 
   // helper functions
   const getLocations = ()=>{
-    console.log(programs);
     // searches through programs locations and adds them to an array, doesnt add duplicates
     const locSet = new Set()
     const locs = []
@@ -59,8 +52,6 @@ const MapListScreen = () => {
       }
     }
     locations = locs
-    console.log("THIS IS IN MAPSCREEN");
-    console.log(locations);
     locSet.clear()
   }
 
@@ -72,7 +63,7 @@ const MapListScreen = () => {
 
   return (
     <div>
-      {loading && <h1>...Loading</h1> }
+      {loading && <Spinner/> }
       {error && <h1>Sorry, there seems to be an error on our side (0_0')!!</h1> }
       {programs !== undefined && (
         mapList 

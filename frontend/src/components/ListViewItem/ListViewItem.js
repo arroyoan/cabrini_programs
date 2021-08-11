@@ -18,8 +18,8 @@ const ListViewItem = ({program}) => {
         </div>
 
         <div className={styles.itemContact}>
-          {program.programEmail && <p>{program.programEmail}</p>}
-          {program.programPhoneNumber && <p>{program.programPhoneNumber}</p>}
+          {program.programPhoneNumber && <p style={{'fontWeight':'600','paddingBottom':'5px'}}><i style={{'paddingRight':'5px'}} className="fas fa-phone"></i>{program.programPhoneNumber}</p>}
+          {program.programEmail && <p><i style={{'paddingRight':'5px'}} className="fas fa-envelope"></i >{program.programEmail}</p>}
         </div>
       </div>
       {program.locations.length > 1 && 
@@ -27,7 +27,7 @@ const ListViewItem = ({program}) => {
             {showLocation ? 
             <ul>
               {program.locations.map(location=>{
-                return <li key={location._id}>{location.locationName}</li>
+                return <li key={location._id} ><NavLink to={`/locations/${location._id}`}>{location.locationName}</NavLink></li>
               })}
             </ul> 
             : 

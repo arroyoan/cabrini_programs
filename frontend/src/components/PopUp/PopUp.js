@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './PopUp.module.css'
 
 const PopUp = ({history,properties}) => {
-  console.log(properties)
   // uses history to link to the other component bc this component is outside of the router
   const onClick = (id)=>{
     history.push(`/locations/${id}`)

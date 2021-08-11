@@ -1,0 +1,23 @@
+.buttonContainer {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.button {
+  border: none;
+  font-size: 16px;
+  background-color: transparent;
+  color: #00205c;
+  margin-left: 6%;
+  height: 48px;
+}
+
+.button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.button i {
+  padding-right: 5px;
+}

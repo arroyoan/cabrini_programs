@@ -1,0 +1,11 @@
+.filterItem {
+  background-color: lightgray;
+  padding: 5px;
+  margin-right: 2rem;
+  font-size: 12px;
+}
+
+.filterItem i:hover {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.774);
+}

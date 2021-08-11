@@ -5,6 +5,8 @@ import styles from './SingleProgramScreen.module.css'
 import ProgramDetailCard from '../../components/ProgramDetailCard/ProgramDetailCard'
 import ProgramContactCard from '../../components/ProgramContactCard/ProgramContactCard'
 import LocationList from '../../components/LocationList/LocationList'
+import Spinner from '../../components/Spinner/Spinner'
+
 
 import {getSingleProgram}  from '../../actions/programActions'
 
@@ -21,12 +23,11 @@ const SingleProgramScreen = ({match}) => {
 
   return (
     <div className={styles.singleProgram} >
-      {loading && <h1>Loading...</h1> }
+      {loading && <Spinner/> }
       {error && <h1>{error.message}</h1> }
 
       {(program !== undefined && program.programName) &&
         <div className={styles.programContent}>
-          {console.log(program)}
           <div className={styles.aboutProgram}>
             <div className={styles.programName}>
               <h2>{program.programName}</h2>
