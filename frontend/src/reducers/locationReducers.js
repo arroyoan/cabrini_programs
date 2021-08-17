@@ -14,7 +14,7 @@ export const locationListReducer = (state = {locations:[]}, action) => {
       return {loading:true,locations:[]}
     
     case LOCATION_LIST_SUCCESS:
-      return {loading: false, locations:action.payload.locations}
+      return {loading: false, locations:action.payload.locations,documentCount:action.payload.documentCount}
 
     case LOCATION_LIST_FAIL:
       return {loading: false, error:action.payload}

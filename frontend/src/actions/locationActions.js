@@ -12,11 +12,6 @@ export const listLocations = (keyword='',partner='',internship='',volunteer='') 
   try {
     dispatch({type: LOCATION_LIST_REQUEST})
 
-    console.log(keyword);
-    console.log(partner);
-    console.log(internship);
-    console.log(volunteer);
-
     const {data} = await axios.get(`/api/v1/locations?keyword=${keyword}&partner=${partner}&internship=${internship}&${volunteer}`) 
 
     dispatch({

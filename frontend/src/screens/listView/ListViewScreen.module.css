@@ -7,3 +7,10 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+
+.results {
+  width: 60%;
+  padding-bottom: 10px;
+  font-size: 14px;
+  color: #666;
+}

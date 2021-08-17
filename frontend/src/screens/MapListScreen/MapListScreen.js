@@ -20,7 +20,7 @@ const MapListScreen = () => {
   // const {loading, error, programs/*, documentCount*/} = programList
 
   const locationList = useSelector(state => state.locationList)
-  const {loading, error, locations/*, documentCount*/} = locationList
+  const {loading, error, locations, documentCount} = locationList
 
   const mapListToggle = useSelector(state => state.mapListToggle)
   const {mapList} = mapListToggle
@@ -75,7 +75,7 @@ const MapListScreen = () => {
       {locations !== undefined && (
         mapList 
           ? <MapViewScreen locations={locations}/>
-          : <ListViewScreen />
+          : <ListViewScreen documentCount={documentCount}/>
       ) }
       {/* {programs !== undefined && (
         mapList 

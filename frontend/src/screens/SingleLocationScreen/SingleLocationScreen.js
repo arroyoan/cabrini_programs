@@ -33,9 +33,9 @@ const SingleLocationScreen = ({match}) => {
         <div className={styles.content}>
 
           <div className={styles.content__locationInfo}>
-            <h2 style={{paddingBottom:'0'}}>{location.locationName}</h2>
+            <h2>{location.locationName}</h2>
             <div>
-              <p style={{paddingTop:"10px",fontSize:"16px"}}>{location.desc}</p>
+              <p >{location.desc}</p>
             </div>
           </div>
 
@@ -47,7 +47,7 @@ const SingleLocationScreen = ({match}) => {
             <div className={styles.content__locationContact}>
               {location.locationEmail&& <p><i className="fas fa-envelope"></i >{location.locationEmail}</p> }
               {location.locationPhoneNumber&& <p><i className="fas fa-phone"></i>{location.locationPhoneNumber}</p> }
-              {location.locationWebsite&& <p className={styles.websiteLink}><i className="fas fa-desktop"></i><a href={location.locationWebsite} style={{'color':'#00205c'}}>{location.locationWebsite}</a></p> }
+              {location.locationWebsite&& <p className={styles.websiteLink}><i className="fas fa-desktop"></i><a href={location.locationWebsite}>{location.locationWebsite}</a></p> }
               {location.GeoJson.streetName && (
                 <div className={styles.content__address}>
                   <p><i className="fas fa-map-marked"></i>{location.GeoJson.streetName} {location.GeoJson.city}, {location.GeoJson.stateCode} {location.GeoJson.zipcode}</p>

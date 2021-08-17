@@ -12,13 +12,13 @@ const getAllLocations = asyncHandler(async (req,res)=>{
     // helper functions that creates the filters that the user has passed in
     const [filters] = getLocationItems(req.query)
 
-    const numLocation =await Location.countDocuments({...filters})
+    const documentCount =await Location.countDocuments({...filters})
     const locations = await Location.find({...filters})
       .populate({path:'categories', select: '_id categoryName'})
       .sort({locationName:1})
 
     res.status(200).json({
-      numLocation,
+      documentCount,
       locations
     })
   } catch (error) {

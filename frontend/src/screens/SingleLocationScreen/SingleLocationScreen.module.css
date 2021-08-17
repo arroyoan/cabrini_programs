@@ -12,6 +12,13 @@
 
 .content__locationInfo h2 {
   font-size: 40px;
+  color: rgb(0, 32, 92);
+  padding-bottom: 0px;
+}
+
+.content__locationInfo p {
+  font-size: 16px;
+  padding-top: 10px;
 }
 
 .content__address {
@@ -26,6 +33,7 @@
 
 .content__locationPrograms h3 {
   padding-bottom: 0.75rem;
+  color: rgb(0, 32, 92);
 }
 
 .content__locationPrograms ul {
@@ -51,4 +59,13 @@
 
 .content__locationContact i {
   padding-right: 6px;
+  color: rgb(0, 32, 92);
+}
+
+.content__locationContact a {
+  color: #ca8c00;
+}
+
+.content__locationContact a:hover {
+  text-decoration: none;
 }
