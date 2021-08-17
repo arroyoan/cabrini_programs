@@ -11,12 +11,12 @@ import {
 const Filters = () => {
   const dispatch = useDispatch()
 
-  let programCats = []
+  // let programCats = []
   let locationCats = []
 
   const categoryList = useSelector(state => state.categoryList)
   //eslint-disable-next-line
-  const {loading, error, categories} = categoryList
+  const { categories} = categoryList
 
   // retrieves the categories from the database
   useEffect(() => {
@@ -25,18 +25,21 @@ const Filters = () => {
 
   if(categories !== undefined && categories.length !== 0){
     categories.forEach(category => {
-      if(category.categoryType === 'program')
-        programCats.push(category)
-      else if(category.categoryType === 'location')
+      // if(category.categoryType === 'program')
+      //   programCats.push(category)
+      /*else*/ 
+      if(category.categoryType === 'location')
         locationCats.push(category)
     });
   }
-
   return (
     <div className={styles.filters}>
       <SearchBar/>
-      <DropdownMenu menuTitle={'Programs'} cats={programCats}/>
+      {/* <DropdownMenu menuTitle={'Programs'} cats={programCats}/> */}
       <DropdownMenu menuTitle={'Partners'} cats={locationCats}/>
+      <DropdownMenu menuTitle={'Internship'} cats={[{categoryName:'Yes',_id:0}]}/>
+      <DropdownMenu menuTitle={'Volunteer'} cats={[{categoryName:'Yes',_id:1}]}/>
+
     </div>
   )
 }

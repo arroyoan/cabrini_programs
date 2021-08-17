@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const Logo = () => {
   return (
     <div className={styles.logo}>
-      <Link to={'/'} ><h1>Cabrini University</h1></Link>
+      <Link to={'/'} ><h1>Cabrini Community Partners</h1></Link>
     </div>
   )
 }

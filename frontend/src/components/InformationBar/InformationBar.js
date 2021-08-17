@@ -4,9 +4,6 @@ import { useLocation } from 'react-router-dom'
 
 import Filters from '../Filters/Filters'
 import BackButton from '../BackButton/BackButton'
-// breadcrumbs
-// display none in state for thing like home screen
-
 
 const InformationBar = () => {
   let location = useLocation()
@@ -22,9 +19,9 @@ const InformationBar = () => {
   }
   
   return (
-    <div className={styles.infobar}>
-      {showBar ? pathName.includes('maplist') ? <Filters/> : <BackButton/> : <div className=""></div> }
-    </div>
+    <>
+      {showBar ? pathName.includes('maplist') ? <div className={styles.infobar}><Filters/></div> : <div className={styles.infobar}><BackButton/></div> : <div className=""></div> }
+    </>
   )
 }
 

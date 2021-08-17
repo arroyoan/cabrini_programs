@@ -16,7 +16,6 @@
 
 .content__address {
   font-size: 14px;
-  padding-top: 0.5rem;
   line-height: 1.5;
 }
 
@@ -40,4 +39,16 @@
 
 .content__locationPrograms a {
   color: black;
+}
+
+.content__locationContact {
+  font-size: 15px;
+}
+
+.content__locationContact p {
+  padding-bottom: 6px;
+}
+
+.content__locationContact i {
+  padding-right: 6px;
 }

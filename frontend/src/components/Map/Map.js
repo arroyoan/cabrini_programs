@@ -17,8 +17,9 @@ const Map = ({history,locations}) => {
     console.log('hello');
     const map = new mapboxgl.Map({
       container:mapContainer.current,
-      center:[-75.37415783339138,40.056082679718784],
-      zoom:11,
+      // center:[-75.37415783339138,40.056082679718784],
+      center:[-75.34016894489463,40.119954917740145],
+      zoom:13,
       style:'mapbox://styles/mapbox/streets-v11',
       dragRotate:false
     })
@@ -50,6 +51,13 @@ const Map = ({history,locations}) => {
       })
 
       if(features.length > 0){
+        
+        map.flyTo({
+          center: e.lngLat,
+          zoom: 15,
+          speed: 0.2,
+        })
+
         const feature = features[0]
         const popupNode = document.createElement('div')
         ReactDOM.render(
@@ -66,7 +74,7 @@ const Map = ({history,locations}) => {
     })
 
     return ()=>map.remove()
-
+    //eslint-disable-next-line
   }, [locations])
 
   const createDataPoints = ()=>{

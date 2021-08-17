@@ -8,7 +8,7 @@ import asyncHandler from 'express-async-handler'
 // @access  Public
 const getAllCategories = asyncHandler(async (req,res)=>{
   try {
-    const categories = await Category.find({})
+    const categories = await Category.find({}).sort({categoryName:1})
     res.status(200).json(categories)
   } catch (error) {
     res.status(500).json({

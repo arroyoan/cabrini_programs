@@ -3,9 +3,9 @@ import styles from './DropdownMenu.module.css'
 import {Link,useLocation} from 'react-router-dom'
 
 const DropdownMenu = ({menuTitle, cats}) => {
-  // console.log('INSIDE OF DROWPDOWNMENU');
   const location = useLocation();
-  let keyword,program,partner;
+  // let keyword,program,partner;
+  let keyword,partner,internship,volunteer;
   // const queryParams = window.location.href.split('?')
   // console.log(queryParams);
   // if(queryParams.length > 1){
@@ -14,18 +14,23 @@ const DropdownMenu = ({menuTitle, cats}) => {
   // console.log(params);
   if(location.search){
     //console.log(location.search.replace('?','').split('&'))
-    let [kW,pG,pT] = location.search.replace('?','').split('&')
-    // console.log(kW)
-    // console.log(pG)
-    // console.log(pT)
-    // console.log()
+    let [kW,pT,iT,vL] = location.search.replace('?','').split('&')
     keyword = kW.split('=')[1] || ''
-    program = pG.split('=')[1] || ''
     partner = pT.split('=')[1] || ''
-    // console.log(keyword)
-    // console.log(program)
-    // console.log(partner)
-    // console.log()
+    internship = iT.split('=')[1] || ''
+    volunteer = vL.split('=')[1] || ''
+    // let [kW,pG,pT] = location.search.replace('?','').split('&')
+    // // console.log(kW)
+    // // console.log(pG)
+    // // console.log(pT)
+    // // console.log()
+    // keyword = kW.split('=')[1] || ''
+    // program = pG.split('=')[1] || ''
+    // partner = pT.split('=')[1] || ''
+    // // console.log(keyword)
+    // // console.log(program)
+    // // console.log(partner)
+    // // console.log()
   }
 
   useEffect(() => {
@@ -39,16 +44,22 @@ const DropdownMenu = ({menuTitle, cats}) => {
         <ul className={styles.dropdown__items}>
           {cats.map(category=>{
             return ( 
-              menuTitle === 'Programs' 
+              menuTitle === 'Partners' 
                 ? <Link 
                     key={category._id} 
-                    to={`/programs/maplist?keyword=${keyword ? keyword : ''}&program=${category._id}&partner=${partner ? partner : ''}`}>
+                    to={`/programs/maplist?keyword=${keyword ? keyword : ''}&partner=${category._id}&internship=${internship ? internship: ''}&volunteer=${volunteer ? volunteer : ''}`}>
                   <li>{category.categoryName}</li>
-                  </Link>
-                : <Link 
+                </Link>
+                : menuTitle === 'Internship'
+                  ? <Link 
                     key={category._id} 
-                    to={`/programs/maplist?keyword=${keyword ? keyword : ''}&program=${program ? program : ''}&partner=${category._id}`}>
-                  <li>{category.categoryName}</li>
+                    to={`/programs/maplist?keyword=${keyword ? keyword : ''}&partner=${partner ? partner : ''}&internship=${category.categoryName}&volunteer=${volunteer ? volunteer : ''}`}>
+                    <li>{category.categoryName}</li>
+                  </Link>
+                  : <Link 
+                    key={category._id} 
+                    to={`/programs/maplist?keyword=${keyword ? keyword : ''}&partner=${partner ? partner : ''}&internship=${internship ? internship : ''}&volunteer=${category.categoryName}`}>
+                    <li>{category.categoryName}</li>
                   </Link>
               
             )

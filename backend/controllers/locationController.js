@@ -2,16 +2,21 @@ import Location from '../models/locationModel.js'
 import Program from '../models/programModel.js'
 import Category from '../models/categoryModel.js'
 import asyncHandler from 'express-async-handler'
+import getLocationItems from '../utils/getLocationItems.js'
 
 // @desc    Gets all locations
 // @route   GET /api/v1/locations/
 // @access  Public
 const getAllLocations = asyncHandler(async (req,res)=>{
   try {
-    const numLocation =await Location.countDocuments()
-    const locations = await Location.find({})
-      .populate({path:'programs', select: '_id programName'})
+    // helper functions that creates the filters that the user has passed in
+    const [filters] = getLocationItems(req.query)
+
+    const numLocation =await Location.countDocuments({...filters})
+    const locations = await Location.find({...filters})
       .populate({path:'categories', select: '_id categoryName'})
+      .sort({locationName:1})
+
     res.status(200).json({
       numLocation,
       locations

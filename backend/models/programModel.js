@@ -82,8 +82,8 @@ const programSchema = new mongoose.Schema({
   }
 })
 
-// adds an index on programName to allow for full-text search on the programsName
-programSchema.index({programName:"text"})
+// // adds an index on programName to allow for full-text search on the programsName
+// programSchema.index({programName:"text"})
 
 const Program = mongoose.model('Program',programSchema);
 

@@ -4,19 +4,19 @@ import {useSelector} from 'react-redux'
 
 import ListViewItem from '../../components/ListViewItem/ListViewItem'
 
-const ListViewScreen = () => {
-
-
+const ListViewScreen = () => { 
   // selects the program list from the state
-  const programList = useSelector(state => state.programList)
-  const { programs } = programList
+  // const programList = useSelector(state => state.programList)
+  // const { programs } = programList
+  const locationList = useSelector(state => state.locationList)
+  const { locations } = locationList
 
   return (
     <div>
-      {programs && 
+      {locations && 
       <div className={styles.listViewItems}>
-        {programs.map((program)=>{
-          return <ListViewItem key={program._id} program={program}/>
+        {locations.map((location)=>{
+          return <ListViewItem key={location._id} location={location}/>
         })}
       </div>}
     </div>

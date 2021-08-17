@@ -1,3 +1,57 @@
 .footer {
-  background-color: purple;
+  background-color: #f3f3f3;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+}
+
+.footer__content {
+  width: 85%;
+  height: 85%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.addressInfo a {
+  color: black;
+  text-decoration: none;
+}
+
+.addressInfo h4 {
+  padding-bottom: 10px;
+  font-size: 16;
+  color: #00205c;
+}
+
+.addressInfo p {
+  padding-bottom: 5px;
+}
+
+.about {
+  max-width: 350px;
+}
+
+.blurb {
+  line-height: 1.25;
+}
+
+.blurb p {
+  color: black;
+  font-size: 14px;
+  padding-bottom: 20px;
+}
+
+.socials i {
+  color: #00205c;
+  font-size: 18px;
+  padding-right: 10px;
+}
+
+.socials i:hover {
+  color: #569bb4;
 }

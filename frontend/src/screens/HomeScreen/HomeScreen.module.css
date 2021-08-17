@@ -1,0 +1,38 @@
+.homeScreenContainer {
+  width: 100%;
+  height: 62vh;
+  background-color: #2774ae;
+  /* background-color: #4e89f8; */
+}
+
+.homescreen__content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* transform: translateY(-10%); */
+  text-align: center;
+}
+
+.homescreen__content h2 {
+  font-size: 42px;
+  max-width: 700px;
+  color: white;
+  padding: 30px;
+}
+
+.homescreen__content a {
+  border: solid 1px white;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.homescreen__content a:hover {
+  color: #fdb71a;
+  border: solid 1px #fdb71a;
+  cursor: pointer;
+}

@@ -12,16 +12,23 @@ const FilterItem = ({filters,filterName,filterContent}) => {
     if(filterName === 'Keyword')
       filters['keyword'] = ''
 
-    if(filterName === 'Program')
-      filters['program'] = ''
+    // if(filterName === 'Inter')
+    //   filters['program'] = ''
 
     if(filterName === 'Partner')
       filters['partner'] = ''
 
-    if(filters['keyword'] ==='' && filters['program'] === '' && filters['partner'] === ''){
+    if(filterName === 'Internship')
+      filters['internship'] = ''
+
+    if(filterName === 'Volunteer')
+      filters['volunteer'] = ''
+
+    if(filters['keyword'] ==='' && /*filters['program'] === '' &&*/ filters['partner'] === '' && filters['internship'] === '' && filters['volunteer'] === ''){
       history.push('/programs/maplist')
     } else{
-      newUrl = `/programs/maplist?keyword=${filters['keyword'] ? filters['keyword']:''}&program=${filters['program'] ? filters['program']:''}&partner=${filters['partner'] ? filters['partner']:''}`      
+      // newUrl = `/programs/maplist?keyword=${filters['keyword'] ? filters['keyword']:''}&program=${filters['program'] ? filters['program']:''}&partner=${filters['partner'] ? filters['partner']:''}`      
+      newUrl = `/programs/maplist?keyword=${filters['keyword'] ? filters['keyword']:''}&partner=${filters['partner'] ? filters['partner']:''}&internship=${filters['internship'] ? filters['internship']:''}&volunteer=${filters['volunteer'] ? filters['volunteer']:''}`  
       history.push(newUrl)
     }
     

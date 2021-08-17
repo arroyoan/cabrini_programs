@@ -6,7 +6,6 @@ const BackButton = () => {
   const history = useHistory()
   const click = (e)=>{
     e.preventDefault()
-    console.log(e.target);
     history.goBack()
   }
   return (

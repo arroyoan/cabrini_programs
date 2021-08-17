@@ -8,11 +8,16 @@ import {
   SINGLE_LOCATION_FAIL
 } from '../constants/locationConstants'
 
-export const listLocations = (keywords='',programs='',partners='') => async (dispatch)=>{
+export const listLocations = (keyword='',partner='',internship='',volunteer='') => async (dispatch)=>{
   try {
     dispatch({type: LOCATION_LIST_REQUEST})
 
-    const {data} = await axios.get(`/api/v1/locations/`)
+    console.log(keyword);
+    console.log(partner);
+    console.log(internship);
+    console.log(volunteer);
+
+    const {data} = await axios.get(`/api/v1/locations?keyword=${keyword}&partner=${partner}&internship=${internship}&${volunteer}`) 
 
     dispatch({
       type:LOCATION_LIST_SUCCESS,

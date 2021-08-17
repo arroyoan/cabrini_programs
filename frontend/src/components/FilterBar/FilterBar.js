@@ -34,7 +34,6 @@ const CurrentFilters = () => {
   if(query !== ""){
     showFilters= true
     filters = query.replace('?','').split("&")
-
     // creates a dictionary where key is the filterType and the filter itself
     filters.forEach(filter =>{
       filter=filter.split('=')
@@ -49,8 +48,10 @@ const CurrentFilters = () => {
         <div className={styles.content}>
           <div className={styles.filters}>
             {currFilters['keyword'] !== "" && <FilterItem filters = {currFilters} filterName='Keyword' filterContent={ currFilters['keyword']} />}
-            {currFilters['program'] !== "" && <FilterItem filters = {currFilters} filterName='Program' filterContent={cats[currFilters['program']]}/>}
+            {/* {currFilters['program'] !== "" && <FilterItem filters = {currFilters} filterName='Program' filterContent={cats[currFilters['program']]}/>} */}
             {currFilters['partner'] !== "" && <FilterItem filters = {currFilters} filterName='Partner' filterContent={cats[currFilters['partner']]}/>}
+            {currFilters['internship'] !== "" && <FilterItem filters = {currFilters} filterName='Internship' filterContent={currFilters['internship']}/>}
+            {currFilters['volunteer'] !== "" && <FilterItem filters = {currFilters} filterName='Volunteer' filterContent={currFilters['volunteer']}/>}
 
           </div> 
         </div>
