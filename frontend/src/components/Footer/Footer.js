@@ -10,7 +10,7 @@ const Footer = () => {
           <a href="https://www.google.com/maps/place/610+King+of+Prussia+Rd,+Strafford,+PA+19087/@40.0552064,-75.376199,17z/data=!3m1!4b1!4m2!3m1!1s0x89c69512858ae5df:0x8a30630b304c7ef3">
             <p>610 King of Prussia Road</p>
             <p>Radnor, PA 19087</p>
-            <p>United States</p>
+            <p>United States</p> 
           </a>
           <p style={{'paddingTop':'5px'}}><strong style={{'color':'#00205c'}}>610.902.8100</strong></p>
         </div>

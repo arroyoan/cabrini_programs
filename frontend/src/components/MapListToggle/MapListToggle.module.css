@@ -1,4 +1,5 @@
 .toggle {
+  visibility: hidden;
   position: absolute;
   right: 25px;
 }
@@ -16,4 +17,10 @@
   cursor: pointer;
   color: #fdb71a;
   border-color: #fdb71a;
+}
+
+@media (min-width: 601px) {
+  .toggle {
+    visibility: visible;
+  }
 }

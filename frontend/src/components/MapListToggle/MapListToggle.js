@@ -5,7 +5,7 @@ import styles from './MapListToggle.module.css'
 import {toggleMapList} from '../../actions/mapListActions'
 
 const MapListToggle = () => {
-  const  dispatch = useDispatch()
+  const  dispatch = useDispatch() 
 
   const mapListToggle = useSelector(state => state.mapListToggle)
   const {mapList} = mapListToggle

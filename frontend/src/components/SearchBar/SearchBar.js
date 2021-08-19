@@ -42,7 +42,7 @@ const SearchBar = () => {
     <div className={styles.searchbar} >
       <form onSubmit={(e)=>submitSearch(e)}>
         <input 
-          placeholder="Search By Keyword..." 
+          placeholder="Search By Partner Name..." 
           type="text" 
           value={input} 
           onChange={(e)=>setInput(e.target.value)} />

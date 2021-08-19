@@ -20,7 +20,12 @@ const InformationBar = () => {
   
   return (
     <>
-      {showBar ? pathName.includes('maplist') ? <div className={styles.infobar}><Filters/></div> : <div className={styles.infobar}><BackButton/></div> : <div className=""></div> }
+      {showBar 
+        ? pathName.includes('maplist') 
+          ? <div className={styles.infobar}><Filters/></div> 
+          : <div className={styles.infobar}><BackButton/></div> 
+        : <div className=""></div> 
+      }
     </>
   )
 }

@@ -34,11 +34,17 @@ const Filters = () => {
   }
   return (
     <div className={styles.filters}>
-      <SearchBar/>
+      <div className="searchbars">
+        
+      </div>
+        <SearchBar/>
       {/* <DropdownMenu menuTitle={'Programs'} cats={programCats}/> */}
-      <DropdownMenu menuTitle={'Partners'} cats={locationCats}/>
-      <DropdownMenu menuTitle={'Internship'} cats={[{categoryName:'Yes',_id:0}]}/>
-      <DropdownMenu menuTitle={'Volunteer'} cats={[{categoryName:'Yes',_id:1}]}/>
+      <div className="dropdownMenus">
+
+      </div>
+        <DropdownMenu menuTitle={'Partners'} cats={locationCats}/>
+        <DropdownMenu menuTitle={'Internship'} cats={[{categoryName:'Yes',_id:0}]}/>
+        <DropdownMenu menuTitle={'Volunteer'} cats={[{categoryName:'Yes',_id:1}]}/>
 
     </div>
   )
