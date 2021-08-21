@@ -6,7 +6,7 @@ const FilterItem = ({filters,filterName,filterContent}) => {
   let history =useHistory()
 
   const click = (e)=>{
-    e.preventDefault()
+    e.preventDefault() 
     let newUrl = ''
 
     if(filterName === 'Keyword')

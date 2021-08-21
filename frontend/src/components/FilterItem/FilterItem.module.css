@@ -1,11 +1,19 @@
 .filterItem {
   background-color: lightgray;
   padding: 5px;
-  margin-right: 2rem;
+  margin-bottom: 0.25rem;
   font-size: 12px;
+  width: fit-content;
 }
 
 .filterItem i:hover {
   cursor: pointer;
   color: rgba(0, 0, 0, 0.774);
+}
+
+@media (min-width: 600px) {
+  .filterItem {
+    margin-right: 2rem;
+    margin-bottom: 0;
+  }
 }

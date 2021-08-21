@@ -11,11 +11,9 @@ const ListViewScreen = ({documentCount}) => {
   const locationList = useSelector(state => state.locationList)
   const { locations } = locationList
 
-  console.log(documentCount);
-
   return (
     <div>
-      {locations && 
+      {(locations && locations.length > 0) && 
       <div className={styles.listViewItems}>
         {documentCount && 
           <div className={styles.results}>

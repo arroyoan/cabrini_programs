@@ -43,7 +43,7 @@ const CurrentFilters = () => {
   
   return (
     <>
-      {showFilters 
+      {showFilters  
         ? 
         <div className={styles.content}>
           <div className={styles.filters}>

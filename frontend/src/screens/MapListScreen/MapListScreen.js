@@ -15,9 +15,14 @@ const MapListScreen = () => {
   let location =useLocation()
   const dispatch = useDispatch()
 
+  console.log(window.screen.width);
   // selects the program list from the state
   // const programList = useSelector(state => state.programList)
   // const {loading, error, programs/*, documentCount*/} = programList
+
+  useEffect(() => {
+    console.log(window.screen.width);
+  }, [window])
 
   const locationList = useSelector(state => state.locationList)
   const {loading, error, locations, documentCount} = locationList
@@ -69,7 +74,7 @@ const MapListScreen = () => {
   // }
 
   return (
-    <div>
+    <div >
       {loading && <Spinner/> }
       {error && <h1>Sorry, there seems to be an error on our side (0_0')!!</h1> }
       {locations !== undefined && (

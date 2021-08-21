@@ -1,5 +1,19 @@
 .filters {
   display: flex;
   align-items: center;
+  flex-direction: column;
   position: relative;
+}
+
+.menus {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .filters {
+    flex-direction: row;
+  }
 }
