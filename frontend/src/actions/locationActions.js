@@ -11,8 +11,9 @@ import {
 export const listLocations = (keyword='',partner='',internship='',volunteer='') => async (dispatch)=>{
   try {
     dispatch({type: LOCATION_LIST_REQUEST})
+    console.log(volunteer);
 
-    const {data} = await axios.get(`/api/v1/locations?keyword=${keyword}&partner=${partner}&internship=${internship}&${volunteer}`) 
+    const {data} = await axios.get(`/api/v1/locations?keyword=${keyword}&partner=${partner}&internship=${internship}&volunteer=${volunteer}`) 
 
     dispatch({
       type:LOCATION_LIST_SUCCESS,

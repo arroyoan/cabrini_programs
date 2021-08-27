@@ -14,15 +14,10 @@ import Spinner from '../../components/Spinner/Spinner'
 const MapListScreen = () => {
   let location =useLocation()
   const dispatch = useDispatch()
-
-  console.log(window.screen.width);
+  
   // selects the program list from the state
   // const programList = useSelector(state => state.programList)
   // const {loading, error, programs/*, documentCount*/} = programList
-
-  useEffect(() => {
-    console.log(window.screen.width);
-  }, [window])
 
   const locationList = useSelector(state => state.locationList)
   const {loading, error, locations, documentCount} = locationList
